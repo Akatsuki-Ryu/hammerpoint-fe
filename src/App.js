@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 import { useState, useEffect, useMemo } from "react";
 
+
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
@@ -167,7 +168,7 @@ export default function App() {
         {layout === "vr" && <Configurator />}
         <Routes>
           {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="*" element={<Navigate to="/akabox" />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>
@@ -191,7 +192,7 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={<Navigate to="/akabox" />} />
       </Routes>
     </ThemeProvider>
   );
