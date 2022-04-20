@@ -44,24 +44,42 @@ import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import Akabox from "layouts/akabox";
+
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+
 
 const routes = [
   {
     type: "collapse",
     name: "Dashboard",
     key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
+    icon: <Icon fontSize="medium">dashboard</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+  },
+  {
+    type: "divider",
+  },
+  {
+    type: "title",
+    title: "Player Info",
+  },
+  {
+    type: "collapse",
+    name: "Akabox",
+    key: "akabox",
+    icon: <Icon fontSize="medium">person</Icon>,
+    route: "/akabox",
+    component: <Akabox />,
   },
   {
     type: "collapse",
     name: "Tables",
     key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
+    icon: <Icon fontSize="medium">table_view</Icon>,
     route: "/tables",
     component: <Tables />,
   },
@@ -85,7 +103,7 @@ const routes = [
     type: "collapse",
     name: "Notifications",
     key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
+    icon: <Icon fontSize="medium">notifications</Icon>,
     route: "/notifications",
     component: <Notifications />,
   },
@@ -93,7 +111,7 @@ const routes = [
     type: "collapse",
     name: "Profile",
     key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
+    icon: <Icon fontSize="medium">person</Icon>,
     route: "/profile",
     component: <Profile />,
   },
