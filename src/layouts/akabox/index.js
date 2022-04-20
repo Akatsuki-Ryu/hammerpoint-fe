@@ -38,6 +38,7 @@ import {apioutput, apirequest} from "../../services/apirequest";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Gamestatuscard from "examples/Cards/StatisticsCards/gamestatuscard";
+import {playerlist} from "../../assets/userdataset";
 
 function akabox() {
 
@@ -86,6 +87,12 @@ function akabox() {
 
     const {sales, tasks} = reportsLineChartData;
 
+    //find the playerlist
+    let playername = "akabox218";
+    let rta = playerlist.filter(it => it.playername === playername);
+
+
+
 
     return (
         <DashboardLayout>
@@ -96,7 +103,7 @@ function akabox() {
                         <MDBox mb={1.5}>
                             <Gamestatuscard
                                 color="secondary"
-                                icon="https://api.mozambiquehe.re/assets/ranks/unranked4.png"
+                                icon={rta[0].profilephoto}
                                 title="playerUID"
                                 count="playername"
                                 percentage={{
