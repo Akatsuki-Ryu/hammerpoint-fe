@@ -286,28 +286,28 @@ function Configurator() {
         </MDBox>
         <Divider />
         <MDBox mt={3} mb={2}>
-          <MDButton
-            component={Link}
-            href="https://www.creative-tim.com/learning-lab/react/quick-start/material-dashboard/"
-            target="_blank"
-            rel="noreferrer"
-            color={darkMode ? "light" : "dark"}
-            variant="outlined"
-            fullWidth
-          >
-            view documentation
-          </MDButton>
+          {/*<MDButton*/}
+          {/*  component={Link}*/}
+          {/*  href="https://www.creative-tim.com/learning-lab/react/quick-start/material-dashboard/"*/}
+          {/*  target="_blank"*/}
+          {/*  rel="noreferrer"*/}
+          {/*  color={darkMode ? "light" : "dark"}*/}
+          {/*  variant="outlined"*/}
+          {/*  fullWidth*/}
+          {/*>*/}
+          {/*  view documentation*/}
+          {/*</MDButton>*/}
         </MDBox>
         <MDBox display="flex" justifyContent="center">
-          <GitHubButton
-            href="https://github.com/creativetimofficial/material-dashboard-react"
-            data-icon="octicon-star"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star creativetimofficial/material-dashboard-react on GitHub"
-          >
-            Star
-          </GitHubButton>
+          {/*<GitHubButton*/}
+          {/*  href="https://github.com/creativetimofficial/material-dashboard-react"*/}
+          {/*  data-icon="octicon-star"*/}
+          {/*  data-size="large"*/}
+          {/*  data-show-count="true"*/}
+          {/*  aria-label="Star creativetimofficial/material-dashboard-react on GitHub"*/}
+          {/*>*/}
+          {/*  Star*/}
+          {/*</GitHubButton>*/}
         </MDBox>
         <MDBox mt={2} textAlign="center">
           <MDBox mb={0.5}>
