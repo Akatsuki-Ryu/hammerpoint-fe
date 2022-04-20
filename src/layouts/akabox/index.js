@@ -37,6 +37,7 @@ import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import {apioutput, apirequest} from "../../services/apirequest";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Gamestatuscard from "examples/Cards/StatisticsCards/gamestatuscard";
 
 function akabox() {
 
@@ -91,65 +92,56 @@ function akabox() {
             <DashboardNavbar/>
             <MDBox py={3}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} md={6} lg={3}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <MDBox mb={1.5}>
-                            <ComplexStatisticsCard
-                                color="dark"
-                                icon="weekend"
-                                title="Bookings"
-                                count={281}
+                            <Gamestatuscard
+                                color="secondary"
+                                icon="https://api.mozambiquehe.re/assets/ranks/unranked4.png"
+                                title="playerUID"
+                                count="playername"
                                 percentage={{
-                                    color: "success",
-                                    amount: "+55%",
-                                    label: "than lask week",
+                                    // color: "success",
+                                    // amount: "+55%",
+                                    // label: "than lask week",
                                 }}
                             />
                         </MDBox>
                     </Grid>
-                    <Grid item xs={12} md={6} lg={3}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <MDBox mb={1.5}>
-                            <ComplexStatisticsCard
-                                icon="leaderboard"
-                                title="Today's Users"
-                                count="2,300"
+                            <Gamestatuscard
+                                color="secondary"
+                                icon="https://api.mozambiquehe.re/assets/ranks/platinum4.png"
+                                title="Rankname"
+                                count="RP"
                                 percentage={{
-                                    color: "success",
-                                    amount: "+3%",
-                                    label: "than last month",
+                                    // color: "success",
+                                    // amount: "+3%",
+                                    // label: "than last month",
                                 }}
                             />
                         </MDBox>
                     </Grid>
-                    <Grid item xs={12} md={6} lg={3}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <MDBox mb={1.5}>
-                            <ComplexStatisticsCard
-                                color="success"
-                                icon="store"
-                                title="Revenue"
-                                count="34k"
+                            <Gamestatuscard
+                                color="secondary"
+                                icon="https://api.mozambiquehe.re/assets/ranks/unranked4.png"
+                                title="rank name"
+                                count="RP"
                                 percentage={{
-                                    color: "success",
-                                    amount: "+1%",
-                                    label: "than yesterday",
+                                    // color: "success",
+                                    // amount: "+1%",
+                                    // label: "than yesterday",
                                 }}
                             />
                         </MDBox>
                     </Grid>
-                    <Grid item xs={12} md={6} lg={3}>
-                        <MDBox mb={1.5}>
-                            <ComplexStatisticsCard
-                                color="primary"
-                                icon="person_add"
-                                title="Followers"
-                                count="+91"
-                                percentage={{
-                                    color: "success",
-                                    amount: "",
-                                    label: "Just updated",
-                                }}
-                            />
-                        </MDBox>
-                    </Grid>
+                    {/*<Grid item xs={12} md={6} lg={3}>*/}
+                    {/*    <MDBox mb={1.5}>*/}
+
+                    {/*    </MDBox>*/}
+                    {/*</Grid>*/}
                 </Grid>
                 <MDBox mt={4.5}>
                     <Grid container spacing={3}>

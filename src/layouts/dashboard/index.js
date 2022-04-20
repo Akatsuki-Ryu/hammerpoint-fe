@@ -117,7 +117,8 @@ function Dashboard() {
                     <Grid item xs={12} md={6} lg={3}>
                         <MDBox mb={1.5}>
                             <ComplexStatisticsCard
-                                icon="leaderboard"
+                                color="info"
+                                icon=""
                                 title="Today's Users"
                                 count="2,300"
                                 percentage={{
@@ -126,6 +127,7 @@ function Dashboard() {
                                     label: "than last month",
                                 }}
                             />
+
                         </MDBox>
                     </Grid>
                     <Grid item xs={12} md={6} lg={3}>
