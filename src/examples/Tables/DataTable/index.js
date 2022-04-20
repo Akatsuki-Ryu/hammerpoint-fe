@@ -186,8 +186,10 @@ function DataTable({
       <Table {...getTableProps()}>
         <MDBox component="thead">
           {headerGroups.map((headerGroup) => (
+              // eslint-disable-next-line react/jsx-key
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
+                  // eslint-disable-next-line react/jsx-key
                 <DataTableHeadCell
                   {...column.getHeaderProps(isSorted && column.getSortByToggleProps())}
                   width={column.width ? column.width : "auto"}
@@ -204,8 +206,10 @@ function DataTable({
           {page.map((row, key) => {
             prepareRow(row);
             return (
+                // eslint-disable-next-line react/jsx-key
               <TableRow {...row.getRowProps()}>
                 {row.cells.map((cell) => (
+                    // eslint-disable-next-line react/jsx-key
                   <DataTableBodyCell
                     noBorder={noEndBorder && rows.length - 1 === key}
                     align={cell.column.align ? cell.column.align : "left"}

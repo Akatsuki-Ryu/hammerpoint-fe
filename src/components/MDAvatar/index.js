@@ -49,4 +49,5 @@ MDAvatar.propTypes = {
   shadow: PropTypes.oneOf(["none", "xs", "sm", "md", "lg", "xl", "xxl", "inset"]),
 };
 
+MDAvatar.displayName = 'MDAvatar';
 export default MDAvatar;

@@ -20,6 +20,7 @@ import PropTypes from "prop-types";
 
 // Custom styles for MDBox
 import MDBoxRoot from "components/MDBox/MDBoxRoot";
+import MDBadge from "../MDBadge";
 
 const MDBox = forwardRef(
   ({ variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow, ...rest }, ref) => (
@@ -62,5 +63,5 @@ MDBox.propTypes = {
     "none",
   ]),
 };
-
+MDBox.displayName = 'MDBox';
 export default MDBox;

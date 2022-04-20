@@ -20,6 +20,7 @@ import PropTypes from "prop-types";
 
 // Custom styles for the MDBadge
 import MDBadgeRoot from "components/MDBadge/MDBadgeRoot";
+import MDAvatar from "../MDAvatar";
 
 const MDBadge = forwardRef(
   ({ color, variant, size, circular, indicator, border, container, children, ...rest }, ref) => (
@@ -67,4 +68,5 @@ MDBadge.propTypes = {
   container: PropTypes.bool,
 };
 
+MDBadge.displayName = 'MDBadge';
 export default MDBadge;

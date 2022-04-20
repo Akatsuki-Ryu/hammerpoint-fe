@@ -23,6 +23,7 @@ import MDTypographyRoot from "components/MDTypography/MDTypographyRoot";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController } from "context";
+import MDAvatar from "../MDAvatar";
 
 const MDTypography = forwardRef(
   (
@@ -94,5 +95,5 @@ MDTypography.propTypes = {
   children: PropTypes.node.isRequired,
   opacity: PropTypes.number,
 };
-
+MDTypography.displayName = 'MDTypography';
 export default MDTypography;

@@ -23,6 +23,7 @@ import MDTypography from "components/MDTypography";
 
 // Custom styles for MDProgress
 import MDProgressRoot from "components/MDProgress/MDProgressRoot";
+import MDPagination from "../MDPagination";
 
 const MDProgress = forwardRef(({ variant, color, value, label, ...rest }, ref) => (
   <>
@@ -65,5 +66,5 @@ MDProgress.propTypes = {
   value: PropTypes.number,
   label: PropTypes.bool,
 };
-
+MDProgress.displayName = 'MDProgress';
 export default MDProgress;

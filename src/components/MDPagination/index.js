@@ -23,6 +23,7 @@ import MDBox from "components/MDBox";
 
 // Custom styles for MDPagination
 import MDPaginationItemRoot from "components/MDPagination/MDPaginationItemRoot";
+import MDInput from "../MDInput";
 
 // The Pagination main context
 const Context = createContext();
@@ -91,5 +92,5 @@ MDPagination.propTypes = {
   active: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
-
+MDPagination.displayName = 'MDPagination';
 export default MDPagination;

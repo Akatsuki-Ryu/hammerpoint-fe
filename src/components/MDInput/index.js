@@ -20,6 +20,7 @@ import PropTypes from "prop-types";
 
 // Custom styles for MDInput
 import MDInputRoot from "components/MDInput/MDInputRoot";
+import MDButton from "../MDButton";
 
 const MDInput = forwardRef(({ error, success, disabled, ...rest }, ref) => (
   <MDInputRoot {...rest} ref={ref} ownerState={{ error, success, disabled }} />
@@ -38,5 +39,5 @@ MDInput.propTypes = {
   success: PropTypes.bool,
   disabled: PropTypes.bool,
 };
-
+MDInput.displayName = 'MDInput';
 export default MDInput;
