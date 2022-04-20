@@ -45,6 +45,7 @@ function akabox() {
     const {REACT_APP_SERVER_URL} = process.env;
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]);
+    let playeruid;
 
     useEffect(() => {
         function loadPost() {
@@ -54,29 +55,17 @@ function akabox() {
             setLoading(true);
 
             axios.get(
-                `${REACT_APP_SERVER_URL}/getplayers`,
+                `${REACT_APP_SERVER_URL}/apicallbridge/akabox218`,
                 {}
             ).then((response) => {
-                // console.log('Get response data');
-                // console.log(response.data);
                 if (response.data) {
-                    // cache.set(to, response.data);
-                    // return res.status(200).json(response.data);
                     console.log(response.data);
-                    // apioutput = JSON.stringify(response.data);
-                    // console.log(apioutput);
                     setPosts(response.data);
 
                 }
             }).catch((error) => {
                 console.log(error);
-                // return res.json(error);
             })
-
-
-            // After fetching data stored it in posts state.
-            // setPosts(response.data);
-
             // Closed the loading page
             setLoading(false);
         }
@@ -91,12 +80,19 @@ function akabox() {
     let playername = "akabox218";
     let rta = playerlist.filter(it => it.playername === playername);
 
-
+    // console.log(posts.global);
+    if (posts.global) {
+        console.log(posts.global);
+    }
 
 
     return (
         <DashboardLayout>
             <DashboardNavbar/>
+            {/*{loading?("loading"):(posts[0].playername)}*/}
+            {/*{loading?"loading":posts[0].uid}sss {playeruid}*/}
+            {/*{posts[0].uid}*/}
+
             <MDBox py={3}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6} lg={4}>
@@ -104,8 +100,8 @@ function akabox() {
                             <Gamestatuscard
                                 color="secondary"
                                 icon={rta[0].profilephoto}
-                                title="playerUID"
-                                count="playername"
+                                title={posts.global?posts.global.name:"loading"}
+                                count={posts.global?("Level "+posts.global.level):"loading"}
                                 percentage={{
                                     // color: "success",
                                     // amount: "+55%",
@@ -118,9 +114,9 @@ function akabox() {
                         <MDBox mb={1.5}>
                             <Gamestatuscard
                                 color="secondary"
-                                icon="https://api.mozambiquehe.re/assets/ranks/platinum4.png"
-                                title="Rankname"
-                                count="RP"
+                                icon={posts.global?posts.global.rank.rankImg:"loading"}
+                                title={posts.global?posts.global.rank.rankName:"loading"}
+                                count={posts.global?posts.global.rank.rankScore:"loading"}
                                 percentage={{
                                     // color: "success",
                                     // amount: "+3%",
@@ -133,9 +129,9 @@ function akabox() {
                         <MDBox mb={1.5}>
                             <Gamestatuscard
                                 color="secondary"
-                                icon="https://api.mozambiquehe.re/assets/ranks/unranked4.png"
-                                title="rank name"
-                                count="RP"
+                                icon={posts.global?posts.global.arena.rankImg:"loading"}
+                                title={posts.global?posts.global.arena.rankName:"loading"}
+                                count={posts.global?posts.global.arena.rankScore:"loading"}
                                 percentage={{
                                     // color: "success",
                                     // amount: "+1%",
