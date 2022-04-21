@@ -25,16 +25,12 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 // Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
-import {apioutput, apirequest} from "../../services/apirequest";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Gamestatuscard from "examples/Cards/StatisticsCards/gamestatuscard";
@@ -59,6 +55,25 @@ function onlinestatus(onlinestatusval, lobbystatusval,selectedlegendval) {
             <MDBadge badgeContent="offline" color="error" variant="gradient" size="sm"/>
         )
     }
+}
+
+function minusdatahandle(datainputval) {
+    if (datainputval === "-1") {
+        return "N/A";
+    } else {
+        return datainputval;
+    }
+}
+// value={posts.total.headshots ? (posts.total.headshots.value) : "N/A"}
+function exceptiondatahandle(datainputval,subparam) {
+    try {
+        return datainputval.value;
+
+    } catch (err) {
+        // console.log(err);
+        return "N/A";
+    }
+
 }
 
 
@@ -132,7 +147,7 @@ function akabox() {
                                 percentage={{
                                     color: "success",
                                     amount: "",
-                                    label: posts.global ? ("BattlePass Lvl " + posts.global.battlepass.level) : "loading",
+                                    label: posts.global ? ("BattlePass Lvl " + minusdatahandle(posts.global.battlepass.level)) : "loading",
                                 }}
                             />
                         </MDBox>
@@ -142,7 +157,7 @@ function akabox() {
                             <Gamestatuscard
                                 color="secondary"
                                 icon={posts.global ? posts.global.rank.rankImg : "loading"}
-                                title={posts.global ? posts.global.rank.rankName : "loading"}
+                                title={posts.global ? posts.global.rank.rankName +" "+posts.global.rank.rankDiv: "loading"}
                                 count={posts.global ? posts.global.rank.rankScore : "loading"}
                                 percentage={{
                                     color: "success",
@@ -182,7 +197,7 @@ function akabox() {
                                 color="error"
                                 title="BR total kills"
                                 description=""
-                                value= {posts.total ? (posts.total.kills.value) : "loading"}
+                                value= {posts.total ? exceptiondatahandle((posts.total.kills)) : "loading"}
                             />
 
                         </Grid>
@@ -202,7 +217,7 @@ function akabox() {
                                 color="info"
                                 title="BR headshots"
                                 description=""
-                                value={posts.total ? (posts.total.headshots.value) : "loading"}
+                                value={posts.total ? exceptiondatahandle((posts.total.headshots)) : "N/A"}
                             />
 
                         </Grid>
@@ -212,7 +227,7 @@ function akabox() {
                                 color="error"
                                 title="Arena total kills"
                                 description=""
-                                value={posts.total ? (posts.total.ar_kills.value) : "loading"}
+                                value={posts.total ?exceptiondatahandle( (posts.total.arenas_kills) ): "loading"}
                             />
 
                         </Grid>
@@ -222,7 +237,7 @@ function akabox() {
                                 color="warning"
                                 title="AR total damage"
                                 description=""
-                                value={posts.total ? (posts.total.arenas_damage.value) : "loading"}
+                                value={posts.total ? exceptiondatahandle((posts.total.arenas_damage)) : "loading"}
                             />
 
                         </Grid>
@@ -238,7 +253,7 @@ function akabox() {
                         </Grid>
                     </Grid>
                 </MDBox>
-                <MDBox mt={4.5}>
+                <MDBox mt={5.5}>
 
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6} lg={4}>
