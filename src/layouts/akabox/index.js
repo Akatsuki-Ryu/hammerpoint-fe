@@ -41,7 +41,7 @@ import Gamestatuscard from "examples/Cards/StatisticsCards/gamestatuscard";
 import {playerlist} from "../../assets/userdataset";
 import MDBadge from "../../components/MDBadge";
 
-function onlinestatus(onlinestatusval, lobbystatusval) {
+function onlinestatus(onlinestatusval, lobbystatusval,selectedlegendval) {
     if (onlinestatusval === "online") {
         if (lobbystatusval === "open") {
             return (
@@ -49,7 +49,7 @@ function onlinestatus(onlinestatusval, lobbystatusval) {
             );
         } else {
             return (
-                <MDBadge badgeContent="in-match" color="info" variant="gradient" size="sm"/>
+                <MDBadge badgeContent={"in-match as  "+selectedlegendval} color="info" variant="gradient" size="sm"/>
             );
         }
 
@@ -119,7 +119,7 @@ function akabox() {
                     <Grid item xs={12} md={6} lg={4}>
                         <MDBox mb={1.5}>
                             <p style={{textAlign: "right"}}>
-                                {posts.realtime ? (onlinestatus(posts.realtime.currentState, posts.realtime.lobbyState)) :
+                                {posts.realtime ? (onlinestatus(posts.realtime.currentState, posts.realtime.lobbyState,posts.realtime.selectedLegend)) :
                                     <MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="sm"/>}
                             </p>
 
