@@ -222,7 +222,7 @@ function akabox() {
                                 color="warning"
                                 title="BR total damage"
                                 description=""
-                                value={posts.total ? (posts.total.damage.value) : "loading"}
+                                value={posts.total ? exceptiondatahandle((posts.total.damage)) : "loading"}
                             />
 
                         </Grid>
@@ -232,7 +232,7 @@ function akabox() {
                                 color="info"
                                 title="BR headshots"
                                 description=""
-                                value={posts.total ? exceptiondatahandle((posts.total.headshots)) : "N/A"}
+                                value={posts.total ? exceptiondatahandle((posts.total.headshots)) : "loading"}
                             />
 
                         </Grid>
@@ -266,7 +266,7 @@ function akabox() {
                                 color="secondary"
                                 title="BR special Kill "
                                 description=""
-                                value={posts.total ? (posts.total.specialEvent_kills.value) : "loading"}
+                                value={posts.total ? exceptiondatahandle(posts.total.specialEvent_kills) : "loading"}
                             />
 
                         </Grid>
