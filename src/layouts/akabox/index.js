@@ -227,7 +227,11 @@ function akabox() {
                                 color="error"
                                 title="Arena total kills"
                                 description=""
-                                value={posts.total ?exceptiondatahandle( (posts.total.arenas_kills) ): "loading"}
+                                value={posts.total ?
+                                    ((exceptiondatahandle( posts.total.arenas_kills )==="N/A")?
+                                        exceptiondatahandle (posts.total.ar_kills) :   exceptiondatahandle( posts.total.arenas_kills )
+                                    )
+                                        : "loading"}
                             />
 
                         </Grid>
