@@ -39,22 +39,23 @@ import MDBadge from "../../components/MDBadge";
 import DefaultInfoCard from "../../examples/Cards/InfoCards/DefaultInfoCard";
 import {useLocation} from "react-router-dom";
 
-function onlinestatus(onlinestatusval, lobbystatusval,selectedlegendval) {
-    if (onlinestatusval === "online") {
-        if (lobbystatusval === "open") {
-            return (
-                <MDBadge badgeContent="online" color="success" variant="gradient" size="sm"/>
-            );
-        } else {
-            return (
-                <MDBadge badgeContent={"in-match as  "+selectedlegendval} color="info" variant="gradient" size="sm"/>
-            );
-        }
-
-    } else {
+function onlinestatus(realtimedata) {
+    if (realtimedata.currentState === "offline") {
         return (
-            <MDBadge badgeContent="offline" color="error" variant="gradient" size="sm"/>
-        )
+        <MDBadge badgeContent="Offline" color="error" variant="gradient" size="sm"/>
+    );
+
+
+
+    } else if (realtimedata.currentState === "inMatch") {
+        return (
+            <MDBadge badgeContent={realtimedata.currentStateAsText+" as  " + realtimedata.selectedLegend} color="info" variant="gradient" size="lg"/>
+        );
+
+    } else if (realtimedata.currentState==="inLobby") {
+        return (
+            <MDBadge badgeContent="in Lobby" color="success" variant="gradient" size="lg"/>
+        );
     }
 }
 
@@ -93,10 +94,12 @@ function akabox() {
 
     const {REACT_APP_SERVER_URL} = process.env;
     const [loading, setLoading] = useState(false);
+    const [count, setCount] = useState(0);
     const [posts, setPosts] = useState([]);
     const [newprofile, setnewprofile] = useState(false);
     let currentprofilename = useLocation().pathname.split("/").slice(1);
     let currentprofileobj = getcurrentprofile(currentprofilename);
+    let refreshtimeoutflag = 0;
     // console.log(currentprofileobj);
 
 
@@ -116,7 +119,7 @@ function akabox() {
                     setPosts(response.data);
                     // Closed the loading page
                     setLoading(false);
-                    console.log("get request");
+                    console.log("get request===================================");
                 }
             }).catch((error) => {
                 console.log(error);
@@ -124,10 +127,11 @@ function akabox() {
 
         }
 
-        setnewprofile(true);
-        // Call the function
-        loadPost();
+
+
+
         // setnewprofile(false);
+        loadPost();
 
     }, currentprofilename);
 
@@ -145,19 +149,28 @@ function akabox() {
             {/*{loading?("loading"):(posts[0].playername)}*/}
             {/*{loading?"loading":posts[0].uid}sss {playeruid}*/}
             {/*{posts[0].uid}*/}
-            <MDBox py={3}>
+            <MDBox py={0}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6} lg={4}>
+                <p style={{textAlign: "right"}}>
+                    {posts.realtime ? (onlinestatus(posts.realtime)) :
+                        <MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="lg"/>}
+                </p>
+                    </Grid>
+                </Grid>
+            </MDBox>
+            <MDBox py={1}>
+                <Grid container spacing={3}>
+
+                    <Grid item xs={12} md={6} lg={4}>
+
                         <MDBox mb={1.5}>
-                            <p style={{textAlign: "right"}}>
-                                {posts.realtime ? (onlinestatus(posts.realtime.currentState, posts.realtime.lobbyState,posts.realtime.selectedLegend)) :
-                                    <MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="sm"/>}
-                            </p>
+
 
                             <Gamestatuscard
                                 color="secondary"
                                 icon={currentprofileobj.profilephoto}
-                                title={posts.global ? posts.global.name : "loading"}
+                                title={posts.global ? ("BattlePass Lvl " + minusdatahandle(posts.global.battlepass.level)) : "loading"}
                                 count={posts.global ? ("Level " + posts.global.level) : "loading"}
                                 percentage={{
                                     color: "success",
@@ -226,16 +239,7 @@ function akabox() {
                             />
 
                         </Grid>
-                        <Grid item xs={12} md={6} lg={2}>
-                            <DefaultInfoCard
-                                icon="record_voice_over"
-                                color="info"
-                                title="BR headshots"
-                                description=""
-                                value={posts.total ? exceptiondatahandle((posts.total.headshots)) : "loading"}
-                            />
 
-                        </Grid>
                         <Grid item xs={12} md={6} lg={2}>
                             <DefaultInfoCard
                                 icon="military_tech"
@@ -267,6 +271,16 @@ function akabox() {
                                 title="BR special Kill "
                                 description=""
                                 value={posts.total ? exceptiondatahandle(posts.total.specialEvent_kills) : "loading"}
+                            />
+
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={2}>
+                            <DefaultInfoCard
+                                icon="record_voice_over"
+                                color="info"
+                                title="BR headshots"
+                                description=""
+                                value={posts.total ? exceptiondatahandle((posts.total.headshots)) : "loading"}
                             />
 
                         </Grid>
