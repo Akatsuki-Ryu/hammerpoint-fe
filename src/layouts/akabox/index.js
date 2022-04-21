@@ -39,6 +39,27 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Gamestatuscard from "examples/Cards/StatisticsCards/gamestatuscard";
 import {playerlist} from "../../assets/userdataset";
+import MDBadge from "../../components/MDBadge";
+
+function onlinestatus(onlinestatusval, lobbystatusval) {
+    if (onlinestatusval === "online") {
+        if (lobbystatusval === "open") {
+            return (
+                <MDBadge badgeContent="online" color="success" variant="gradient" size="sm"/>
+            );
+        } else {
+            return (
+                <MDBadge badgeContent="in-match" color="info" variant="gradient" size="sm"/>
+            );
+        }
+
+    } else {
+        return (
+            <MDBadge badgeContent="offline" color="error" variant="gradient" size="sm"/>
+        )
+    }
+}
+
 
 function akabox() {
 
@@ -82,7 +103,7 @@ function akabox() {
 
     // console.log(posts.global);
     if (posts.global) {
-        console.log(posts.global);
+        console.log(posts.realtime);
     }
 
 
@@ -97,15 +118,20 @@ function akabox() {
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6} lg={4}>
                         <MDBox mb={1.5}>
+                            <p style={{textAlign: "right"}}>
+                                {posts.realtime ? (onlinestatus(posts.realtime.currentState, posts.realtime.lobbyState)) :
+                                    <MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="sm"/>}
+                            </p>
+
                             <Gamestatuscard
                                 color="secondary"
                                 icon={rta[0].profilephoto}
-                                title={posts.global?posts.global.name:"loading"}
-                                count={posts.global?("Level "+posts.global.level):"loading"}
+                                title={posts.global ? posts.global.name : "loading"}
+                                count={posts.global ? ("Level " + posts.global.level) : "loading"}
                                 percentage={{
-                                    // color: "success",
-                                    // amount: "+55%",
-                                    // label: "than lask week",
+                                    color: "success",
+                                    amount: "",
+                                    label: posts.global ? ("BattlePass Lvl " + posts.global.battlepass.level) : "loading",
                                 }}
                             />
                         </MDBox>
@@ -114,13 +140,13 @@ function akabox() {
                         <MDBox mb={1.5}>
                             <Gamestatuscard
                                 color="secondary"
-                                icon={posts.global?posts.global.rank.rankImg:"loading"}
-                                title={posts.global?posts.global.rank.rankName:"loading"}
-                                count={posts.global?posts.global.rank.rankScore:"loading"}
+                                icon={posts.global ? posts.global.rank.rankImg : "loading"}
+                                title={posts.global ? posts.global.rank.rankName : "loading"}
+                                count={posts.global ? posts.global.rank.rankScore : "loading"}
                                 percentage={{
-                                    // color: "success",
-                                    // amount: "+3%",
-                                    // label: "than last month",
+                                    color: "success",
+                                    amount: "",
+                                    label: posts.global ? (posts.global.rank.rankedSeason) : "loading",
                                 }}
                             />
                         </MDBox>
@@ -129,13 +155,13 @@ function akabox() {
                         <MDBox mb={1.5}>
                             <Gamestatuscard
                                 color="secondary"
-                                icon={posts.global?posts.global.arena.rankImg:"loading"}
-                                title={posts.global?posts.global.arena.rankName:"loading"}
-                                count={posts.global?posts.global.arena.rankScore:"loading"}
+                                icon={posts.global ? posts.global.arena.rankImg : "loading"}
+                                title={posts.global ? posts.global.arena.rankName : "loading"}
+                                count={posts.global ? posts.global.arena.rankScore : "loading"}
                                 percentage={{
-                                    // color: "success",
-                                    // amount: "+1%",
-                                    // label: "than yesterday",
+                                    color: "success",
+                                    amount: "",
+                                    label: posts.global ? (posts.global.arena.rankedSeason) : "loading",
                                 }}
                             />
                         </MDBox>
