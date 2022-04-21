@@ -40,6 +40,7 @@ import axios from "axios";
 import Gamestatuscard from "examples/Cards/StatisticsCards/gamestatuscard";
 import {playerlist} from "../../assets/userdataset";
 import MDBadge from "../../components/MDBadge";
+import DefaultInfoCard from "../../examples/Cards/InfoCards/DefaultInfoCard";
 
 function onlinestatus(onlinestatusval, lobbystatusval,selectedlegendval) {
     if (onlinestatusval === "online") {
@@ -103,7 +104,7 @@ function akabox() {
 
     // console.log(posts.global);
     if (posts.global) {
-        console.log(posts.realtime);
+        console.log(posts.total);
     }
 
 
@@ -172,9 +173,76 @@ function akabox() {
                     {/*    </MDBox>*/}
                     {/*</Grid>*/}
                 </Grid>
+                <MDBox mt={1.5}>
+
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} md={6} lg={2}>
+                            <DefaultInfoCard
+                                icon="military_tech"
+                                color="error"
+                                title="BR total kills"
+                                description=""
+                                value= {posts.total ? (posts.total.kills.value) : "loading"}
+                            />
+
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={2}>
+                            <DefaultInfoCard
+                                icon="stars"
+                                color="warning"
+                                title="BR total damage"
+                                description=""
+                                value={posts.total ? (posts.total.damage.value) : "loading"}
+                            />
+
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={2}>
+                            <DefaultInfoCard
+                                icon="record_voice_over"
+                                color="info"
+                                title="BR headshots"
+                                description=""
+                                value={posts.total ? (posts.total.headshots.value) : "loading"}
+                            />
+
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={2}>
+                            <DefaultInfoCard
+                                icon="military_tech"
+                                color="error"
+                                title="Arena total kills"
+                                description=""
+                                value={posts.total ? (posts.total.ar_kills.value) : "loading"}
+                            />
+
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={2}>
+                            <DefaultInfoCard
+                                icon="stars"
+                                color="warning"
+                                title="AR total damage"
+                                description=""
+                                value={posts.total ? (posts.total.arenas_damage.value) : "loading"}
+                            />
+
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={2}>
+                            <DefaultInfoCard
+                                icon="redeem"
+                                color="secondary"
+                                title="BR special Kill "
+                                description=""
+                                value={posts.total ? (posts.total.specialEvent_kills.value) : "loading"}
+                            />
+
+                        </Grid>
+                    </Grid>
+                </MDBox>
                 <MDBox mt={4.5}>
+
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6} lg={4}>
+
                             <MDBox mb={3}>
                                 <ReportsBarChart
                                     color="primary"
