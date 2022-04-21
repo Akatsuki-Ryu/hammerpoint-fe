@@ -129,7 +129,7 @@ function akabox() {
         loadPost();
         // setnewprofile(false);
 
-    }, []);
+    }, currentprofilename);
 
     const {sales, tasks} = reportsLineChartData;
 
