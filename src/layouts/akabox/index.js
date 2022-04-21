@@ -37,6 +37,7 @@ import Gamestatuscard from "examples/Cards/StatisticsCards/gamestatuscard";
 import {playerlist} from "../../assets/userdataset";
 import MDBadge from "../../components/MDBadge";
 import DefaultInfoCard from "../../examples/Cards/InfoCards/DefaultInfoCard";
+import {useLocation} from "react-router-dom";
 
 function onlinestatus(onlinestatusval, lobbystatusval,selectedlegendval) {
     if (onlinestatusval === "online") {
@@ -76,13 +77,28 @@ function exceptiondatahandle(datainputval,subparam) {
 
 }
 
+function getcurrentprofile(currentprofilename) {
+    currentprofilename = currentprofilename[0];
+    let currentprofile = playerlist.filter(it => it.profilename === currentprofilename);
+    // console.log(currentprofile);
+    return currentprofile[0];
+
+
+}
+
+
+
 
 function akabox() {
 
     const {REACT_APP_SERVER_URL} = process.env;
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]);
-    let playeruid;
+    const [newprofile, setnewprofile] = useState(false);
+    let currentprofilename = useLocation().pathname.split("/").slice(1);
+    let currentprofileobj = getcurrentprofile(currentprofilename);
+    // console.log(currentprofileobj);
+
 
     useEffect(() => {
         function loadPost() {
@@ -92,35 +108,35 @@ function akabox() {
             setLoading(true);
 
             axios.get(
-                `${REACT_APP_SERVER_URL}/apicallbridge/akabox218`,
+                `${REACT_APP_SERVER_URL}/apicallbridge/${currentprofileobj.playername}`,
                 {}
             ).then((response) => {
                 if (response.data) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     setPosts(response.data);
-
+                    // Closed the loading page
+                    setLoading(false);
+                    console.log("get request");
                 }
             }).catch((error) => {
                 console.log(error);
             })
-            // Closed the loading page
-            setLoading(false);
+
         }
 
+        setnewprofile(true);
         // Call the function
         loadPost();
+        // setnewprofile(false);
+
     }, []);
 
     const {sales, tasks} = reportsLineChartData;
 
-    //find the playerlist
-    let playername = "akabox218";
-    let rta = playerlist.filter(it => it.playername === playername);
 
-    // console.log(posts.global);
-    if (posts.global) {
-        console.log(posts.total);
-    }
+
+//get the path name for multi user purposes
+//     console.log( useLocation().pathname.split("/").slice(1));
 
 
     return (
@@ -129,7 +145,6 @@ function akabox() {
             {/*{loading?("loading"):(posts[0].playername)}*/}
             {/*{loading?"loading":posts[0].uid}sss {playeruid}*/}
             {/*{posts[0].uid}*/}
-
             <MDBox py={3}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6} lg={4}>
@@ -141,7 +156,7 @@ function akabox() {
 
                             <Gamestatuscard
                                 color="secondary"
-                                icon={rta[0].profilephoto}
+                                icon={currentprofileobj.profilephoto}
                                 title={posts.global ? posts.global.name : "loading"}
                                 count={posts.global ? ("Level " + posts.global.level) : "loading"}
                                 percentage={{
