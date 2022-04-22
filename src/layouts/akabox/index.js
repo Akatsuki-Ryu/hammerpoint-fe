@@ -42,17 +42,17 @@ import {useLocation} from "react-router-dom";
 function onlinestatus(realtimedata) {
     if (realtimedata.currentState === "offline") {
         return (
-        <MDBadge badgeContent="Offline" color="error" variant="gradient" size="sm"/>
-    );
-
+            <MDBadge badgeContent="Offline" color="error" variant="gradient" size="lg"/>
+        );
 
 
     } else if (realtimedata.currentState === "inMatch") {
         return (
-            <MDBadge badgeContent={realtimedata.currentStateAsText+" as  " + realtimedata.selectedLegend} color="info" variant="gradient" size="lg"/>
+            <MDBadge badgeContent={realtimedata.currentStateAsText + " as  " + realtimedata.selectedLegend} color="info"
+                     variant="gradient" size="lg"/>
         );
 
-    } else if (realtimedata.currentState==="inLobby") {
+    } else if (realtimedata.currentState === "inLobby") {
         return (
             <MDBadge badgeContent="in Lobby" color="success" variant="gradient" size="lg"/>
         );
@@ -66,8 +66,9 @@ function minusdatahandle(datainputval) {
         return datainputval;
     }
 }
+
 // value={posts.total.headshots ? (posts.total.headshots.value) : "N/A"}
-function exceptiondatahandle(datainputval,subparam) {
+function exceptiondatahandle(datainputval, subparam) {
     try {
         return datainputval.value;
 
@@ -86,8 +87,6 @@ function getcurrentprofile(currentprofilename) {
 
 
 }
-
-
 
 
 function akabox() {
@@ -120,6 +119,9 @@ function akabox() {
                     // Closed the loading page
                     setLoading(false);
                     console.log("get request===================================");
+                    if (response.data.realtime.isOnline === 0) {//highdemand settings .
+                        clearInterval(timer);
+                    }
                 }
             }).catch((error) => {
                 console.log(error);
@@ -127,16 +129,18 @@ function akabox() {
 
         }
 
-
+        const timer = setInterval(() => loadPost(), 10000);//high demand settings , if profile online , fetch every 10 sec
 
 
         // setnewprofile(false);
         loadPost();
+        return () => {
+            clearInterval(timer);
+        };
 
     }, currentprofilename);
 
     const {sales, tasks} = reportsLineChartData;
-
 
 
 //get the path name for multi user purposes
@@ -152,10 +156,10 @@ function akabox() {
             <MDBox py={0}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6} lg={4}>
-                <p style={{textAlign: "right"}}>
-                    {posts.realtime ? (onlinestatus(posts.realtime)) :
-                        <MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="lg"/>}
-                </p>
+                        <p style={{textAlign: "right"}}>
+                            {posts.realtime ? (onlinestatus(posts.realtime)) :
+                                <MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="lg"/>}
+                        </p>
                     </Grid>
                 </Grid>
             </MDBox>
@@ -185,7 +189,7 @@ function akabox() {
                             <Gamestatuscard
                                 color="secondary"
                                 icon={posts.global ? posts.global.rank.rankImg : "loading"}
-                                title={posts.global ? posts.global.rank.rankName +" "+posts.global.rank.rankDiv: "loading"}
+                                title={posts.global ? posts.global.rank.rankName + " " + posts.global.rank.rankDiv : "loading"}
                                 count={posts.global ? posts.global.rank.rankScore : "loading"}
                                 percentage={{
                                     color: "success",
@@ -225,7 +229,7 @@ function akabox() {
                                 color="error"
                                 title="BR total kills"
                                 description=""
-                                value= {posts.total ? exceptiondatahandle((posts.total.kills)) : "loading"}
+                                value={posts.total ? exceptiondatahandle((posts.total.kills)) : "loading"}
                             />
 
                         </Grid>
@@ -247,10 +251,10 @@ function akabox() {
                                 title="Arena total kills"
                                 description=""
                                 value={posts.total ?
-                                    ((exceptiondatahandle( posts.total.arenas_kills )==="N/A")?
-                                        exceptiondatahandle (posts.total.ar_kills) :   exceptiondatahandle( posts.total.arenas_kills )
+                                    ((exceptiondatahandle(posts.total.arenas_kills) === "N/A") ?
+                                            exceptiondatahandle(posts.total.ar_kills) : exceptiondatahandle(posts.total.arenas_kills)
                                     )
-                                        : "loading"}
+                                    : "loading"}
                             />
 
                         </Grid>
