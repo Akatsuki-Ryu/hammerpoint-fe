@@ -145,11 +145,15 @@ export default function gamedata(gamedata) {
         return {
             columns: [
                 {Header: "time", accessor: "gameStartTimestamp", align: "center"},
+                {Header: "length", accessor: "gameLengthSecs", align: "center"},
+                {Header: "MODE", accessor: "gameMode", align: "center"},
                 {Header: "legendPlayed", accessor: "legendPlayed", align: "center"},
                 {Header: "BRScore", accessor: "BRScore", align: "center"},
                 {Header: "BRScoreChange", accessor: "BRScoreChange", align: "center"},
                 {Header: "kill", accessor: "gamedatakill", align: "center"},
                 {Header: "DMG", accessor: "gamedatadmg", align: "center"},
+                {Header: "assist", accessor: "possibleplacementassist", align: "center"},
+                {Header: "position", accessor: "possibleplacement", align: "center"},
             ],
 
             rows: tablerowsdata
