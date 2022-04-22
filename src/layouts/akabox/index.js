@@ -39,6 +39,17 @@ import MDBadge from "../../components/MDBadge";
 import DefaultInfoCard from "../../examples/Cards/InfoCards/DefaultInfoCard";
 import {useLocation} from "react-router-dom";
 
+//timestamp related
+import TimeAgo from 'javascript-time-ago'
+import ReactTimeAgo from 'react-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
+import ru from 'javascript-time-ago/locale/ru.json'
+
+TimeAgo.addDefaultLocale(en)
+TimeAgo.addLocale(ru)
+
+
+
 function onlinestatus(realtimedata) {
     if (realtimedata.currentState === "offline") {
         return (
@@ -100,6 +111,8 @@ function akabox() {
     let currentprofileobj = getcurrentprofile(currentprofilename);
     let refreshtimeoutflag = 0;
     // console.log(currentprofileobj);
+
+    let date = new Date();
 
 
     useEffect(() => {
@@ -179,8 +192,9 @@ function akabox() {
                                 percentage={{
                                     color: "success",
                                     amount: "",
-                                    label: posts.global ? ("BattlePass Lvl " + minusdatahandle(posts.global.battlepass.level)) : "loading",
+                                    label: ""
                                 }}
+                                boldtext={<span>Last Update: <ReactTimeAgo date={date} locale="en-US" timeStyle="round" /></span>}
                             />
                         </MDBox>
                     </Grid>

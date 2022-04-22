@@ -26,7 +26,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "../../../../components/MDAvatar";
 
-function gamestatuscard({ color, title, count, percentage, icon }) {
+function gamestatuscard({ color, title, count, percentage, icon,boldtext }) {
   return (
     <Card>
       <MDBox display="flex" justifyContent="space-between" pt={2} px={2}>
@@ -57,7 +57,8 @@ function gamestatuscard({ color, title, count, percentage, icon }) {
       </MDBox>
       <Divider />
       <MDBox pb={2} px={2}>
-        <MDTypography component="p" variant="button" color="text" display="flex">
+        <MDTypography component="p" variant="h6" color="text" display="flex">
+          {boldtext}
           <MDTypography
             component="span"
             variant="button"
