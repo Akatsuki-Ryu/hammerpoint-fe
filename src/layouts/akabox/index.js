@@ -26,7 +26,7 @@ import Footer from "examples/Footer";
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 
-// Data
+// chart Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
@@ -44,6 +44,12 @@ import TimeAgo from 'javascript-time-ago'
 import ReactTimeAgo from 'react-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import ru from 'javascript-time-ago/locale/ru.json'
+import Card from "@mui/material/Card";
+import MDTypography from "../../components/MDTypography";
+import DataTable from "../../examples/Tables/DataTable";
+
+//table data
+import gamedata from "layouts/akabox/data/gamedata"
 
 TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
@@ -106,16 +112,22 @@ function akabox() {
     const [loading, setLoading] = useState(false);
     const [count, setCount] = useState(0);
     const [posts, setPosts] = useState([]);
-    const [newprofile, setnewprofile] = useState(false);
+    const [gameposts, setgamePosts] = useState([]);
     let currentprofilename = useLocation().pathname.split("/").slice(1);
     let currentprofileobj = getcurrentprofile(currentprofilename);
-    let refreshtimeoutflag = 0;
-    // console.log(currentprofileobj);
 
+    let gamepostdata;
+    //timestamp
     let date = new Date();
 
 
-    useEffect(() => {
+    //table data
+    // const { columns, rows } = gamedata();
+    // let rowsdata = undefined;
+    // const { columns: pColumns, rows: pRows } = projectsTableData();
+
+
+        useEffect(() => {
         function loadPost() {
 
             // Till the data is fetch using API
@@ -135,6 +147,29 @@ function akabox() {
                     if (response.data.realtime.isOnline === 0) {//highdemand settings .
                         clearInterval(timer);
                     }
+                }
+            }).catch((error) => {
+                console.log(error);
+            })
+
+            axios.get(
+                `${REACT_APP_SERVER_URL}/apicallgame/${currentprofileobj.playername}`,
+                {}
+            ).then((response) => {
+                if (response.data) {
+                    // console.log(response.data);
+
+                    // Closed the loading page
+                    setLoading(false);
+                    console.log("get game request===================================");
+                    // console.log(response.data);
+                    // gamedata(response.data);
+                    // setgamePosts(gamedata());
+                    // console.log(gameposts);
+                    // gamepostdata = gamedata();
+                    // console.log(gamepostdata);
+
+                    setgamePosts(response.data);
                 }
             }).catch((error) => {
                 console.log(error);
@@ -194,7 +229,9 @@ function akabox() {
                                     amount: "",
                                     label: ""
                                 }}
-                                boldtext={<span>Last Update: <ReactTimeAgo date={date} locale="en-US" timeStyle="round" /></span>}
+                                boldtext={<span>Last Update: <ReactTimeAgo date={date} locale="en-US"
+                                                                           timeStyle="round"/></span>}
+                                progressbarval={posts.global ? (posts.global.toNextLevelPercent) : 0}
                             />
                         </MDBox>
                     </Grid>
@@ -348,6 +385,73 @@ function akabox() {
                     </Grid>
                 </MDBox>
                 <MDBox>
+                    <MDBox pt={6} pb={3}>
+                        <Grid container spacing={6}>
+                            <Grid item xs={12}>
+                                <Card>
+                                    <MDBox
+                                        mx={2}
+                                        mt={-3}
+                                        py={3}
+                                        px={2}
+                                        variant="gradient"
+                                        bgColor="info"
+                                        borderRadius="lg"
+                                        coloredShadow="info"
+                                    >
+                                        <MDTypography variant="h6" color="white">
+                                            Authors Table
+                                        </MDTypography>
+                                    </MDBox>
+                                    <MDBox pt={3}>
+                                        {gameposts!==[]?
+
+                                            <DataTable
+                                                table={gamedata(gameposts)}
+                                                isSorted={false}
+                                                entriesPerPage={false}
+                                                showTotalEntries={false}
+                                                noEndBorder
+                                            /> : ""}
+                                        {/*<DataTable*/}
+                                        {/*    table={table}*/}
+                                        {/*    isSorted={false}*/}
+                                        {/*    entriesPerPage={false}*/}
+                                        {/*    showTotalEntries={false}*/}
+                                        {/*    noEndBorder*/}
+                                        {/*/>*/}
+                                    </MDBox>
+                                </Card>
+                            </Grid>
+                            {/*<Grid item xs={12}>*/}
+                            {/*    <Card>*/}
+                            {/*        <MDBox*/}
+                            {/*            mx={2}*/}
+                            {/*            mt={-3}*/}
+                            {/*            py={3}*/}
+                            {/*            px={2}*/}
+                            {/*            variant="gradient"*/}
+                            {/*            bgColor="info"*/}
+                            {/*            borderRadius="lg"*/}
+                            {/*            coloredShadow="info"*/}
+                            {/*        >*/}
+                            {/*            <MDTypography variant="h6" color="white">*/}
+                            {/*                Projects Table*/}
+                            {/*            </MDTypography>*/}
+                            {/*        </MDBox>*/}
+                            {/*        <MDBox pt={3}>*/}
+                            {/*            <DataTable*/}
+                            {/*                table={{ columns: pColumns, rows: pRows }}*/}
+                            {/*                isSorted={false}*/}
+                            {/*                entriesPerPage={false}*/}
+                            {/*                showTotalEntries={false}*/}
+                            {/*                noEndBorder*/}
+                            {/*            />*/}
+                            {/*        </MDBox>*/}
+                            {/*    </Card>*/}
+                            {/*</Grid>*/}
+                        </Grid>
+                    </MDBox>
                     {/*<Grid container spacing={3}>*/}
                     {/*    <Grid item xs={12} md={6} lg={8}>*/}
                     {/*        <Projects/>*/}
