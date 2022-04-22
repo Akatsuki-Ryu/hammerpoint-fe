@@ -25,8 +25,9 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "../../../../components/MDAvatar";
+import MDProgress from "../../../../components/MDProgress";
 
-function gamestatuscard({ color, title, count, percentage, icon,boldtext }) {
+function gamestatuscard({ color, title, count, percentage, icon,boldtext ,progressbarval}) {
   return (
     <Card>
       <MDBox display="flex" justifyContent="space-between" pt={2} px={2}>
@@ -53,6 +54,7 @@ function gamestatuscard({ color, title, count, percentage, icon,boldtext }) {
             {title}
           </MDTypography>
           <MDTypography variant="h4">{count}</MDTypography>
+          {progressbarval?<MDProgress value={progressbarval} color="success" variant="gradient"/>:""}
         </MDBox>
       </MDBox>
       <Divider />
