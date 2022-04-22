@@ -27,7 +27,7 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import ReactTimeAgo from "react-time-ago";
 
-import SimpleDateTime  from 'react-simple-timestamp-to-date';
+import SimpleDateTime from 'react-simple-timestamp-to-date';
 
 export default function gamedata(gamedata) {
     let tablerowsdata = [];
@@ -83,20 +83,21 @@ export default function gamedata(gamedata) {
 
         for (let i = 0; i < gamedata.length; i++) {
             gameentity = {};
-            console.log(gamedata[i].gameStartTimestamp);
+            // console.log(gamedata[i].gameStartTimestamp);
 
 
             gameentity.uid = gamedata[i].uid;
             gameentity.name = gamedata[i].name;
             // console.log(gamedata[i].gameStartTimestamp);
 
-
             let date = gamedata[i].gameStartTimestamp;
-            console.log(date);
-            let datestring = new Date(date);
 
             gameentity.gameStartTimestamp = <SimpleDateTime dateSeparator="-" timeSeparator=":">{date}</SimpleDateTime>
-            gameentity.gameLengthSecs = gamedata[i].gameLengthSecs;
+
+            let minutes = Math.floor(gamedata[i].gameLengthSecs / 60);
+            let seconds = gamedata[i].gameLengthSecs - minutes * 60;
+
+            gameentity.gameLengthSecs = minutes + " min " + seconds + " sec";
             gameentity.legendPlayed = gamedata[i].legendPlayed;
             gameentity.gameMode = gamedata[i].gameMode;
 
@@ -128,13 +129,13 @@ export default function gamedata(gamedata) {
                 gameentity.possibleplacementassist = "N/A";
             }
 
-            console.log("game entity");
-            console.log(gameentity);
-            console.log("before push");
-            console.log(tablerowsdata);
+            // console.log("game data");
+            // console.log(gamedata);
+            // console.log("before push");
+            // console.log(tablerowsdata);
             tablerowsdata.push(gameentity);
-            console.log("after push the tablerowdata");
-            console.log(tablerowsdata);
+            // console.log("after push the tablerowdata");
+            // console.log(tablerowsdata);
             // console.log(i);
             // console.log(gamedata[i]);
 
