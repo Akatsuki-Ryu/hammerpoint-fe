@@ -55,24 +55,39 @@ TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
 
 
-
 function onlinestatus(realtimedata) {
-    if (realtimedata.currentState === "offline") {
+    if (realtimedata.isOnline === 0) {
         return (
             <MDBadge badgeContent="Offline" color="error" variant="gradient" size="lg"/>
         );
 
 
-    } else if (realtimedata.currentState === "inMatch") {
-        return (
-            <MDBadge badgeContent={realtimedata.currentStateAsText + " as  " + realtimedata.selectedLegend} color="info"
-                     variant="gradient" size="lg"/>
-        );
+    } else {
+        if (realtimedata.canJoin === 0) {
+            if (realtimedata.isInGame === 1) {
+                return (
+                    <MDBadge badgeContent="Invite Only In-Game" color="warning" variant="gradient" size="lg"/>
+                );
+            } else {
+                return (
+                    <MDBadge badgeContent="Invite Only" color="warning" variant="gradient" size="lg"/>
+                );
+            }
+        } else {
+            if (realtimedata.isInGame === 1) {
+                return (
+                    <MDBadge badgeContent={realtimedata.currentStateAsText + " as  " + realtimedata.selectedLegend}
+                             color="info"
+                             variant="gradient" size="lg"/>
+                );
+            } else {
+                return (
+                    <MDBadge badgeContent="in Lobby" color="success" variant="gradient" size="lg"/>
+                )
+            }
+        }
 
-    } else if (realtimedata.currentState === "inLobby") {
-        return (
-            <MDBadge badgeContent="in Lobby" color="success" variant="gradient" size="lg"/>
-        );
+
     }
 }
 
@@ -127,7 +142,7 @@ function akabox() {
     // const { columns: pColumns, rows: pRows } = projectsTableData();
 
 
-        useEffect(() => {
+    useEffect(() => {
         function loadPost() {
 
             // Till the data is fetch using API
@@ -139,7 +154,7 @@ function akabox() {
                 {}
             ).then((response) => {
                 if (response.data) {
-                    // console.log(response.data);
+                    console.log(response.data);
                     setPosts(response.data);
                     // Closed the loading page
                     setLoading(false);
@@ -177,7 +192,7 @@ function akabox() {
 
         }
 
-        const timer = setInterval(() => loadPost(), 10000);//high demand settings , if profile online , fetch every 10 sec
+        const timer = setInterval(() => loadPost(), 6000);//high demand settings , if profile online , fetch every 10 sec
 
 
         // setnewprofile(false);
@@ -343,46 +358,46 @@ function akabox() {
                 </MDBox>
                 {/*<MDBox mt={5.5}>*/}
 
-                    {/*<Grid container spacing={3}>*/}
-                    {/*    <Grid item xs={12} md={6} lg={4}>*/}
+                {/*<Grid container spacing={3}>*/}
+                {/*    <Grid item xs={12} md={6} lg={4}>*/}
 
-                    {/*        <MDBox mb={3}>*/}
-                    {/*            <ReportsBarChart*/}
-                    {/*                color="primary"*/}
-                    {/*                title="damage"*/}
-                    {/*                description="record your damage value throughout games"*/}
-                    {/*                date="updated 4 min ago"*/}
-                    {/*                chart={reportsBarChartData}*/}
-                    {/*            />*/}
-                    {/*        </MDBox>*/}
-                    {/*    </Grid>*/}
-                    {/*    <Grid item xs={12} md={6} lg={4}>*/}
-                    {/*        <MDBox mb={3}>*/}
-                    {/*            <ReportsLineChart*/}
-                    {/*                color="warning"*/}
-                    {/*                title="ranked game rp changes"*/}
-                    {/*                description={*/}
-                    {/*                    <>*/}
-                    {/*                        (<strong>+15%</strong>) increase in today*/}
-                    {/*                    </>*/}
-                    {/*                }*/}
-                    {/*                date="updated 4 min ago"*/}
-                    {/*                chart={sales}*/}
-                    {/*            />*/}
-                    {/*        </MDBox>*/}
-                    {/*    </Grid>*/}
-                    {/*    <Grid item xs={12} md={6} lg={4}>*/}
-                    {/*        <MDBox mb={3}>*/}
-                    {/*            <ReportsLineChart*/}
-                    {/*                color="dark"*/}
-                    {/*                title="ranked arena rp changes"*/}
-                    {/*                description="ranked arena rp changes"*/}
-                    {/*                date="just updated"*/}
-                    {/*                chart={tasks}*/}
-                    {/*            />*/}
-                    {/*        </MDBox>*/}
-                    {/*    </Grid>*/}
-                    {/*</Grid>*/}
+                {/*        <MDBox mb={3}>*/}
+                {/*            <ReportsBarChart*/}
+                {/*                color="primary"*/}
+                {/*                title="damage"*/}
+                {/*                description="record your damage value throughout games"*/}
+                {/*                date="updated 4 min ago"*/}
+                {/*                chart={reportsBarChartData}*/}
+                {/*            />*/}
+                {/*        </MDBox>*/}
+                {/*    </Grid>*/}
+                {/*    <Grid item xs={12} md={6} lg={4}>*/}
+                {/*        <MDBox mb={3}>*/}
+                {/*            <ReportsLineChart*/}
+                {/*                color="warning"*/}
+                {/*                title="ranked game rp changes"*/}
+                {/*                description={*/}
+                {/*                    <>*/}
+                {/*                        (<strong>+15%</strong>) increase in today*/}
+                {/*                    </>*/}
+                {/*                }*/}
+                {/*                date="updated 4 min ago"*/}
+                {/*                chart={sales}*/}
+                {/*            />*/}
+                {/*        </MDBox>*/}
+                {/*    </Grid>*/}
+                {/*    <Grid item xs={12} md={6} lg={4}>*/}
+                {/*        <MDBox mb={3}>*/}
+                {/*            <ReportsLineChart*/}
+                {/*                color="dark"*/}
+                {/*                title="ranked arena rp changes"*/}
+                {/*                description="ranked arena rp changes"*/}
+                {/*                date="just updated"*/}
+                {/*                chart={tasks}*/}
+                {/*            />*/}
+                {/*        </MDBox>*/}
+                {/*    </Grid>*/}
+                {/*</Grid>*/}
                 {/*</MDBox>*/}
                 <MDBox>
                     <MDBox pt={6} pb={3}>
@@ -404,7 +419,7 @@ function akabox() {
                                         </MDTypography>
                                     </MDBox>
                                     <MDBox pt={3}>
-                                        {gameposts!==[]?
+                                        {gameposts !== [] ?
 
                                             <DataTable
                                                 table={gamedata(gameposts)}
