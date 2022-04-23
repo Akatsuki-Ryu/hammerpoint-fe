@@ -108,7 +108,14 @@ export default function gamedata(gamedata) {
 
             try {
                 let rta = gamedata[i].gameData.filter(it => it.key === "kills");
-                gameentity.gamedatakill = rta[0].value;
+                if (rta.length === 0) {
+                    rta = gamedata[i].gameData.filter(it => it.key === "specialEvent_kills");
+                    gameentity.gamedatakill = rta[0].value;
+                } else {
+                    gameentity.gamedatakill = rta[0].value;
+                }
+
+
             } catch (err) {
                 // console.log(err);
                 gameentity.gamedatakill = "N/A";
@@ -116,7 +123,12 @@ export default function gamedata(gamedata) {
 
             try {
                 let rta = gamedata[i].gameData.filter(it => it.key === "damage");
-                gameentity.gamedatadmg = rta[0].value;
+                if (rta.length === 0) {
+                    rta = gamedata[i].gameData.filter(it => it.key === "specialEvent_damage");
+                    gameentity.gamedatadmg = rta[0].value;
+                } else {
+                    gameentity.gamedatadmg = rta[0].value;
+                }
             } catch (err) {
                 // console.log(err);
                 gameentity.gamedatadmg = "N/A";
