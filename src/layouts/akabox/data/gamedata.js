@@ -28,10 +28,10 @@ import team4 from "assets/images/team-4.jpg";
 import ReactTimeAgo from "react-time-ago";
 
 import SimpleDateTime from 'react-simple-timestamp-to-date';
+export let tablerowsdata = [];
 
-export default function gamedata(gamedata) {
-    let tablerowsdata = [];
-    console.log("ingamedata func");
+export default function gamedatahandle(gamedata) {
+    tablerowsdata = [];
 
     let gameentity = {
         "uid": "000",

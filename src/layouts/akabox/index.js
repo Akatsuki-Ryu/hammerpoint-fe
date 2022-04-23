@@ -49,7 +49,9 @@ import MDTypography from "../../components/MDTypography";
 import DataTable from "../../examples/Tables/DataTable";
 
 //table data
-import gamedata from "layouts/akabox/data/gamedata"
+import gamedata, {tablerowsdata} from "layouts/akabox/data/gamedata"
+import dmgLineChartData from "./data/rpLineChartData";
+import dmgbarchartdatahandle from "./data/dmgBarChartData";
 
 TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
@@ -356,49 +358,50 @@ function akabox() {
                         </Grid>
                     </Grid>
                 </MDBox>
-                {/*<MDBox mt={5.5}>*/}
+                <MDBox mt={5.5}>
 
-                {/*<Grid container spacing={3}>*/}
-                {/*    <Grid item xs={12} md={6} lg={4}>*/}
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} md={6} lg={4}>
 
-                {/*        <MDBox mb={3}>*/}
-                {/*            <ReportsBarChart*/}
-                {/*                color="primary"*/}
-                {/*                title="damage"*/}
-                {/*                description="record your damage value throughout games"*/}
-                {/*                date="updated 4 min ago"*/}
-                {/*                chart={reportsBarChartData}*/}
-                {/*            />*/}
-                {/*        </MDBox>*/}
-                {/*    </Grid>*/}
-                {/*    <Grid item xs={12} md={6} lg={4}>*/}
-                {/*        <MDBox mb={3}>*/}
-                {/*            <ReportsLineChart*/}
-                {/*                color="warning"*/}
-                {/*                title="ranked game rp changes"*/}
-                {/*                description={*/}
-                {/*                    <>*/}
-                {/*                        (<strong>+15%</strong>) increase in today*/}
-                {/*                    </>*/}
-                {/*                }*/}
-                {/*                date="updated 4 min ago"*/}
-                {/*                chart={sales}*/}
-                {/*            />*/}
-                {/*        </MDBox>*/}
-                {/*    </Grid>*/}
-                {/*    <Grid item xs={12} md={6} lg={4}>*/}
-                {/*        <MDBox mb={3}>*/}
-                {/*            <ReportsLineChart*/}
-                {/*                color="dark"*/}
-                {/*                title="ranked arena rp changes"*/}
-                {/*                description="ranked arena rp changes"*/}
-                {/*                date="just updated"*/}
-                {/*                chart={tasks}*/}
-                {/*            />*/}
-                {/*        </MDBox>*/}
-                {/*    </Grid>*/}
-                {/*</Grid>*/}
-                {/*</MDBox>*/}
+                            <MDBox mb={3}>
+                                {gameposts[0] !== undefined ?
+                                    <ReportsBarChart
+                                        color="primary"
+                                        title="damage"
+                                        description="record your damage value throughout games"
+                                        date="updated 4 min ago"
+                                        chart={dmgbarchartdatahandle(gameposts)}
+                                    /> : ""}
+                            </MDBox>
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={4}>
+                            <MDBox mb={3}>
+                                <ReportsLineChart
+                                    color="warning"
+                                    title="ranked game rp changes"
+                                    description={
+                                        <>
+                                            (<strong>+15%</strong>) increase in today
+                                        </>
+                                    }
+                                    date="updated 4 min ago"
+                                    chart={sales}
+                                />
+                            </MDBox>
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={4}>
+                            <MDBox mb={3}>
+                                <ReportsLineChart
+                                    color="dark"
+                                    title="ranked arena rp changes"
+                                    description="ranked arena rp changes"
+                                    date="just updated"
+                                    chart={tasks}
+                                />
+                            </MDBox>
+                        </Grid>
+                    </Grid>
+                </MDBox>
                 <MDBox>
                     <MDBox pt={6} pb={3}>
                         <Grid container spacing={6}>
@@ -419,7 +422,7 @@ function akabox() {
                                         </MDTypography>
                                     </MDBox>
                                     <MDBox pt={3}>
-                                        {gameposts !== [] ?
+                                        {gameposts[0] !== undefined ?
 
                                             <DataTable
                                                 table={gamedata(gameposts)}
