@@ -42,7 +42,7 @@ export default function rplinechartdatahandle (gamedata){
 
     return {
       labels: labeldata,
-      datasets: {label: "Sales", data: chartdata}
+      datasets: {label: "BRScore", data: chartdata}
     };
   } catch (err) {
     // console.log(err);

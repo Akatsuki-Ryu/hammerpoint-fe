@@ -38,7 +38,7 @@ export default function dmgbarchartdatahandle (gamedata){
 
         return {
             labels: labeldata,
-            datasets: {label: "Sales", data: chartdata}
+            datasets: {label: "DMG", data: chartdata}
         };
     } catch (err) {
         // console.log(err);
