@@ -43,7 +43,7 @@ export default function dmgbarchartdatahandle (gamedata){
     } catch (err) {
         // console.log(err);
         return {
-            labels: ["loading"],
+            labels: ["not enough data "],
             datasets: {label: "DMG", data: ["loading"]}
         };
 
