@@ -94,10 +94,15 @@ export default function gamedata(gamedata) {
 
             gameentity.gameStartTimestamp = <SimpleDateTime dateSeparator="-" timeSeparator=":">{date}</SimpleDateTime>
 
-            let minutes = Math.floor(gamedata[i].gameLengthSecs / 60);
-            let seconds = gamedata[i].gameLengthSecs - minutes * 60;
+            if (gamedata[i].gameLengthSecs === -1) {
+                gameentity.gameLengthSecs = "Too short";
+            } else {
+                let minutes = Math.floor(gamedata[i].gameLengthSecs / 60);
+                let seconds = gamedata[i].gameLengthSecs - minutes * 60;
 
-            gameentity.gameLengthSecs = minutes + " min " + seconds + " sec";
+                gameentity.gameLengthSecs = minutes + " min " + seconds + " sec";
+            }
+
             gameentity.legendPlayed = gamedata[i].legendPlayed;
             gameentity.gameMode = gamedata[i].gameMode;
 
@@ -121,8 +126,18 @@ export default function gamedata(gamedata) {
             gameentity.BRScore = gamedata[i].BRScore;
 
             try {
-                gameentity.possibleplacement = gamedata[i].possibleplacement[gamedata[i].possiblePlacement.length - 1].placement;
-                gameentity.possibleplacementassist = gamedata[i].possibleplacement[gamedata[i].possiblePlacement.length - 1].assists;
+
+                if (gamedata[i].possiblePlacement === false) {
+                    gameentity.possibleplacement = "N/A";
+                    gameentity.possibleplacementassist = "N/A";
+                } else {
+                    let possibleplacementarray = gamedata[i].possiblePlacement;
+                    possibleplacementarray = possibleplacementarray[gamedata[i].possiblePlacement.length - 1];
+
+                    gameentity.possibleplacement = possibleplacementarray.placement;
+                    gameentity.possibleplacementassist =possibleplacementarray.assists;
+                }
+
             } catch (err) {
                 // console.log(err);
                 gameentity.possibleplacement = "N/A";
