@@ -49,8 +49,7 @@ import MDTypography from "../../components/MDTypography";
 import DataTable from "../../examples/Tables/DataTable";
 
 //table data
-import gamedata, {tablerowsdata} from "layouts/akabox/data/gamedata"
-import dmgLineChartData from "./data/rpLineChartData";
+import gamedata from "layouts/akabox/data/gamedata"
 import dmgbarchartdatahandle from "./data/dmgBarChartData";
 import rplinechartdatahandle from "./data/rpLineChartData";
 
