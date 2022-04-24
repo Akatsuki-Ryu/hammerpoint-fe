@@ -109,6 +109,14 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Maidaki <3",
+    key: "Maidaki",
+    icon: <Icon fontSize="medium">person</Icon>,
+    route: "/Maidaki",
+    component: <Akabox />,
+  },
+  {
+    type: "collapse",
     name: "Tables",
     key: "tables",
     icon: <Icon fontSize="medium">table_view</Icon>,
