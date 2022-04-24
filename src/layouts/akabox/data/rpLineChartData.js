@@ -18,7 +18,7 @@ export default function rplinechartdatahandle (gamedata){
   let sourcedata = [];
   try {
     sourcedata = gamedatahandle(gamedata).rows;
-    console.log(sourcedata);
+    // console.log(sourcedata);
   } catch (err) {
     console.log("gamedata not avaliable for chart");
     // console.log(err);

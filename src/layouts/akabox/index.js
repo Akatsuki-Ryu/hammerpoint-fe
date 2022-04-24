@@ -162,7 +162,7 @@ function akabox() {
                     setPosts(response.data);
                     // Closed the loading page
                     setLoading(false);
-                    console.log("get request===================================");
+                    console.log("get bridge request===================================");
                     if (response.data.realtime.isOnline === 0) {//highdemand settings .
                         clearInterval(timer);
                     }

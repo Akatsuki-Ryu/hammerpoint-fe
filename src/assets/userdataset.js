@@ -1,4 +1,4 @@
-export const playerlist = [{
+export let playerlist = [{
     "profilename": "akabox",
     "playername": "akabox218",
     "uid": "1007820601979",

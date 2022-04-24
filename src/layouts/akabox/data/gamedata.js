@@ -76,7 +76,7 @@ export default function gamedatahandle(gamedata) {
 
 
     try {
-        console.log("try gamedata");
+        console.log("try gamedata 0");
         console.log(gamedata[0]);
         // tablerowsdata = gamedata;
 
@@ -167,7 +167,7 @@ export default function gamedatahandle(gamedata) {
             // console.log(gamedata[i]);
 
         }
-        console.log(tablerowsdata);
+        // console.log(tablerowsdata);
 
 
         return {
