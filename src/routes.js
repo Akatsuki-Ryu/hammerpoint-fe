@@ -45,21 +45,31 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Akabox from "layouts/akabox";
+import Landingpage from "./layouts/landingpage";
 
 
 // @mui icons
 import Icon from "@mui/material/Icon";
 
 
+
 const routes = [
   {
     type: "collapse",
     name: "Dashboard",
-    key: "dashboard",
+    key: "landingpage",
     icon: <Icon fontSize="medium">dashboard</Icon>,
     route: "/dashboard",
-    component: <Dashboard />,
+    component: <Landingpage />,
   },
+  // {
+  //   type: "collapse",
+  //   name: "Dashboard",
+  //   key: "dashboard",
+  //   icon: <Icon fontSize="medium">dashboard</Icon>,
+  //   route: "/dashboard",
+  //   component: <Dashboard />,
+  // },
   {
     type: "divider",
   },
