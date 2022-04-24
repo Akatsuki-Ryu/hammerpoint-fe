@@ -23,6 +23,11 @@ export const playerlist = [{
     "playername": "The9axel5",
     "uid": "2298814335",
     "profilephoto": "https://cdn.discordapp.com/avatars/222299113713041408/847fbea14b00f3a87385fd7912313948.png?size=1024"
+},{
+    "profilename": "Maidaki",
+    "playername": "Lundaki",
+    "uid": "2381075935",
+    "profilephoto": "https://cdn.discordapp.com/avatars/251744309735456768/d5122ec107ac109880460b5252c454e6.png?size=1024"
 }];
 
 
