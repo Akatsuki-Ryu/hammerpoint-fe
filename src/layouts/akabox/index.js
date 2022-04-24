@@ -423,7 +423,7 @@ function akabox() {
                                         coloredShadow="info"
                                     >
                                         <MDTypography variant="h6" color="white">
-                                            Authors Table
+                                            History Game statics
                                         </MDTypography>
                                     </MDBox>
                                     <MDBox pt={3}>
