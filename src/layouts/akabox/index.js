@@ -135,7 +135,9 @@ function akabox() {
 
     let gamepostdata;
     //timestamp
-    let date = new Date();
+    let dateregular = new Date();
+    dateregular = Date.now();
+
 
 
     //table data
@@ -246,10 +248,11 @@ function akabox() {
                                     amount: "",
                                     label: ""
                                 }}
-                                boldtext={<span>Last Update: <ReactTimeAgo date={date} locale="en-US"
+                                boldtext={<span>Last Update: <ReactTimeAgo date={dateregular} locale="en-US"
                                                                            timeStyle="round"/></span>}
                                 progressbarval={posts.global ? (posts.global.toNextLevelPercent) : 0}
                             />
+
                         </MDBox>
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
