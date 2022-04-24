@@ -1,20 +1,20 @@
 /**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
+ =========================================================
+ * Material Dashboard 2 React - v2.1.0
+ =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+ * Product Page: https://www.creative-tim.com/product/material-dashboard-react
+ * Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
-Coded by www.creative-tim.com
+ Coded by www.creative-tim.com
 
  =========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 import gamedatahandle, {tablerowsdata} from "./gamedata";
 
-export default function dmgbarchartdatahandle (gamedata){
+export default function dmgbarchartdatahandle(gamedata) {
     let sourcedata = [];
     try {
         sourcedata = gamedatahandle(gamedata).rows;
@@ -25,13 +25,16 @@ export default function dmgbarchartdatahandle (gamedata){
     }
 
 
-
     try {
         let chartdata = [];
         let labeldata = [];
-        for (let i = 0; i < 20; i++) {
+        let maxsearchlength = 40;
+        if (tablerowsdata.length < 40) {
+            maxsearchlength = 20;
+        }
+        for (let i = 0; i < maxsearchlength; i++) {
             labeldata[i] = i + 1;
-            chartdata[19 - i] = tablerowsdata[i].gamedatadmg;
+            chartdata[maxsearchlength - 1 - i] = tablerowsdata[i].gamedatadmg;
 
         }
 
