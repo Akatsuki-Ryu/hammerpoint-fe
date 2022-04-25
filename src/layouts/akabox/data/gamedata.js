@@ -92,15 +92,17 @@ export default function gamedatahandle(gamedata) {
 
             let date = gamedata[i].gameStartTimestamp;
 
-            gameentity.gameStartTimestamp = <SimpleDateTime dateSeparator="-" timeSeparator=":">{date}</SimpleDateTime>
+            gameentity.gameStartTimestamp = date;
+            gameentity.gameStartTimedisp = <SimpleDateTime dateSeparator="-" timeSeparator=":">{date}</SimpleDateTime>
 
             if (gamedata[i].gameLengthSecs === -1) {
-                gameentity.gameLengthSecs = "Too short";
+                gameentity.gameLengthdisp = "Too short";
             } else {
                 let minutes = Math.floor(gamedata[i].gameLengthSecs / 60);
                 let seconds = gamedata[i].gameLengthSecs - minutes * 60;
 
-                gameentity.gameLengthSecs = minutes + " min " + seconds + " sec";
+                gameentity.gameLengthSecs = gamedata[i].gameLengthSecs;
+                gameentity.gameLengthdisp = minutes + " min " + seconds + " sec";
             }
 
             gameentity.legendPlayed = gamedata[i].legendPlayed;
@@ -172,15 +174,15 @@ export default function gamedatahandle(gamedata) {
 
         return {
             columns: [
-                {Header: "time", accessor: "gameStartTimestamp", align: "center"},
-                {Header: "length", accessor: "gameLengthSecs", align: "center"},
+                {Header: "time", accessor: "gameStartTimedisp", align: "center"},
+                {Header: "length", accessor: "gameLengthdisp", align: "center"},
                 {Header: "MODE", accessor: "gameMode", align: "center"},
                 {Header: "legendPlayed", accessor: "legendPlayed", align: "center"},
                 {Header: "BRScore", accessor: "BRScore", align: "center"},
                 {Header: "BRScoreChange", accessor: "BRScoreChange", align: "center"},
                 {Header: "kill", accessor: "gamedatakill", align: "center"},
-                {Header: "DMG", accessor: "gamedatadmg", align: "center"},
                 {Header: "assist", accessor: "possibleplacementassist", align: "center"},
+                {Header: "DMG", accessor: "gamedatadmg", align: "center"},
                 {Header: "position", accessor: "possibleplacement", align: "center"},
             ],
 
