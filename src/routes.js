@@ -46,6 +46,7 @@ import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Akabox from "layouts/akabox";
 import Landingpage from "./layouts/landingpage";
+import Serverstatus from "./layouts/serverstatus";
 
 
 // @mui icons
@@ -124,6 +125,14 @@ const routes = [
     icon: <Icon fontSize="medium">person</Icon>,
     route: "/Maidaki",
     component: <Akabox />,
+  },
+  {
+    type: "collapse",
+    name: "server status",
+    key: "serverstatus",
+    icon: <Icon fontSize="medium">table_view</Icon>,
+    route: "/serverstatus",
+    component: <Serverstatus />,
   },
   {
     type: "collapse",
