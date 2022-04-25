@@ -52,7 +52,7 @@ function landingpage() {
             setLoading(true);
 
             axios.get(
-                `${REACT_APP_SERVER_URL}/getplayers`,
+                `${REACT_APP_SERVER_URL}/getserverstatus`,
                 {}
             ).then((response) => {
                 // console.log('Get response data');
@@ -64,6 +64,7 @@ function landingpage() {
                     // apioutput = JSON.stringify(response.data);
                     // console.log(apioutput);
                     setPosts(response.data);
+
 
                 }
             }).catch((error) => {
@@ -84,6 +85,7 @@ function landingpage() {
     }, []);
 
     const {sales, tasks} = reportsLineChartData;
+    console.log(posts);
 
 
     return (
@@ -97,7 +99,10 @@ function landingpage() {
             {/*        <h4>{item.playername}</h4>))*/}
             {/*}sss*/}
             <DashboardNavbar/>
+
 Coming soon
+            {posts!==[] ? JSON.stringify(posts):""}
+            sss
             <Footer/>
         </DashboardLayout>
     );
