@@ -30,14 +30,65 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import projectsTableData from "layouts/tables/data/projectsTableData";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import reportsLineChartData from "../dashboard/data/reportsLineChartData";
 
 function serverstatus() {
+
+  const {REACT_APP_SERVER_URL} = process.env;
+  const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    function loadPost() {
+
+      // Till the data is fetch using API
+      // the Loading page will show.
+      setLoading(true);
+
+      axios.get(
+          `${REACT_APP_SERVER_URL}/getserverstatus`,
+          {}
+      ).then((response) => {
+        // console.log('Get response data');
+        // console.log(response.data);
+        if (response.data) {
+          // cache.set(to, response.data);
+          // return res.status(200).json(response.data);
+          // console.log(response.data);
+          // apioutput = JSON.stringify(response.data);
+          // console.log(apioutput);
+          setPosts(response.data);
+
+
+        }
+      }).catch((error) => {
+        console.log(error);
+        // return res.json(error);
+      })
+
+
+      // After fetching data stored it in posts state.
+      // setPosts(response.data);
+
+      // Closed the loading page
+      setLoading(false);
+    }
+
+    // Call the function
+    loadPost();
+  }, []);
+
+  // console.log(posts);
+
   const { columns, rows } = authorsTableData();
   const { columns: pColumns, rows: pRows } = projectsTableData();
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      {posts!==[] ? JSON.stringify(posts):""}
       <MDBox pt={6} pb={3}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
