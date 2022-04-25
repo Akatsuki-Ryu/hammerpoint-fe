@@ -101,7 +101,7 @@ function landingpage() {
             <DashboardNavbar/>
 
 Coming soon
-            {posts!==[] ? JSON.stringify(posts):""}
+            {/*{posts!==[] ? JSON.stringify(posts):""}*/}
             sss
             <Footer/>
         </DashboardLayout>
