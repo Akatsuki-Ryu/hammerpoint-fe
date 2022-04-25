@@ -127,12 +127,26 @@ const routes = [
     component: <Akabox />,
   },
   {
+    type: "divider",
+  },
+  {
+    type: "title",
+    title: "Server Info",
+  },
+  {
     type: "collapse",
     name: "server status",
     key: "serverstatus",
     icon: <Icon fontSize="medium">table_view</Icon>,
     route: "/serverstatus",
     component: <Serverstatus />,
+  },
+  {
+    type: "divider",
+  },
+  {
+    type: "title",
+    title: "Dev stuff",
   },
   {
     type: "collapse",
