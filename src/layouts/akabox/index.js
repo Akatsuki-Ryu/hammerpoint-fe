@@ -431,7 +431,7 @@ function akabox() {
 
                                             <DataTable
                                                 table={gamedata(gameposts)}
-                                                isSorted={false}
+                                                isSorted={true}
                                                 entriesPerPage={false}
                                                 showTotalEntries={false}
                                                 noEndBorder
