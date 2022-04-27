@@ -154,7 +154,7 @@ function akabox() {
             setLoading(true);
 
             axios.get(
-                `${REACT_APP_SERVER_URL}/apicallbridge/${currentprofileobj.playername}`,
+                `${REACT_APP_SERVER_URL}/getbridgedata/${currentprofileobj.playername}`,
                 {}
             ).then((response) => {
                 if (response.data) {
@@ -172,7 +172,7 @@ function akabox() {
             })
 
             axios.get(
-                `${REACT_APP_SERVER_URL}/apicallgame/${currentprofileobj.playername}`,
+                `${REACT_APP_SERVER_URL}/getgamedata/${currentprofileobj.playername}`,
                 {}
             ).then((response) => {
                 if (response.data) {
