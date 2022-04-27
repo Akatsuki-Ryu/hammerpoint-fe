@@ -33,7 +33,7 @@ function statusentitylist({serverdata, contentswitch}) {
     datapurified = JSON.parse(datapurified);
 
 
-    if (contentswitch === "server") {
+    if (contentswitch === "Server") {
 
 
         try {
@@ -43,7 +43,7 @@ function statusentitylist({serverdata, contentswitch}) {
                 <Card sx={{height: "100%"}}>
                     <MDBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
                         <MDTypography variant="h6" fontWeight="medium">
-                            Server status
+                            {contentswitch}  status
                         </MDTypography>
                         <MDButton variant="outlined" color="info" size="small">
                             view all
@@ -72,10 +72,10 @@ function statusentitylist({serverdata, contentswitch}) {
                 </Card>
             );
         } catch (e) {
-            return "loading";
+            return "No data";
 
         }
-    }else if (contentswitch ==="selfcore") {
+    }else if (contentswitch ==="Selfcore") {
         try {
             console.log(datapurified);
 
@@ -83,7 +83,7 @@ function statusentitylist({serverdata, contentswitch}) {
                 <Card sx={{height: "100%"}}>
                     <MDBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
                         <MDTypography variant="h6" fontWeight="medium">
-                            Server status
+                            {contentswitch} status
                         </MDTypography>
                         <MDButton variant="outlined" color="info" size="small">
                             view all
@@ -112,12 +112,20 @@ function statusentitylist({serverdata, contentswitch}) {
                 </Card>
             );
         } catch (e) {
-            return "loading";
+            return "No data";
 
         }
 
 
+    }else {
+        try {
+            return "No data";
+        } catch (e) {
+            console.log(e);
+        }
+
     }
+
 }
 
 export default statusentitylist;

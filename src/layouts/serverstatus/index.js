@@ -94,10 +94,10 @@ function serverstatus() {
                 <MDBox mb={3}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={4}>
-                            <Statusentitylist serverdata={posts} contentswitch="server"/>
+                            <Statusentitylist serverdata={posts} contentswitch="Server"/>
                         </Grid>
                         <Grid item xs={12} lg={4}>
-                            <Statusentitylist serverdata={posts} contentswitch="selfcore"/>
+                            <Statusentitylist serverdata={posts} contentswitch="Selfcore"/>
                         </Grid>
                     </Grid>
                 </MDBox>

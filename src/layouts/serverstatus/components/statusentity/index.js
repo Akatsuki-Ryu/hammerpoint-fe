@@ -69,12 +69,12 @@ statusentity.defaultProps = {
     noGutter: false,
 };
 
-// Typechecking props for the Invoice
-statusentity.propTypes = {
-    date: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    noGutter: PropTypes.bool,
-};
+// // Typechecking props for the Invoice
+// statusentity.propTypes = {
+//     date: PropTypes.string.isRequired,
+//     id: PropTypes.string.isRequired,
+//     price: PropTypes.string.isRequired,
+//     noGutter: PropTypes.bool,
+// };
 
 export default statusentity;
