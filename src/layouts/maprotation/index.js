@@ -208,7 +208,7 @@ function Maprotation() {
                 {/*</Grid>*/}
 
                 <MDBox mt={5} mb={3}>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={4}>
 
                         {posts!==[] ?
                                 <Grid item xs={12} md={6} lg={4}>
