@@ -47,10 +47,12 @@ import SignUp from "layouts/authentication/sign-up";
 import Akabox from "layouts/akabox";
 import Landingpage from "./layouts/landingpage";
 import Serverstatus from "./layouts/serverstatus";
+import Maprotation from "./layouts/maprotation";
 
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+
 
 
 
@@ -140,6 +142,14 @@ const routes = [
     icon: <Icon fontSize="medium">table_view</Icon>,
     route: "/serverstatus",
     component: <Serverstatus />,
+  },
+  {
+    type: "collapse",
+    name: "Map rotation",
+    key: "maprotation",
+    icon: <Icon fontSize="medium">map</Icon>,
+    route: "/maprotation",
+    component: <Maprotation />,
   },
   {
     type: "divider",
