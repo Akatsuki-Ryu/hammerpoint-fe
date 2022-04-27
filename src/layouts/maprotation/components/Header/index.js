@@ -41,8 +41,10 @@ import backgroundImage from "assets/images/bg-profile.jpeg";
 function Maprotationheader({children,mapaddr}) {
     try {
         mapaddr === "1";
+        children === "1";
 
     }catch (e) {
+        console.log(e);
         return "no data";
     }
     const [tabsOrientation, setTabsOrientation] = useState("horizontal");

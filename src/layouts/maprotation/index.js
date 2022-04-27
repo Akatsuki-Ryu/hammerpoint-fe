@@ -43,23 +43,24 @@ import Maprotationheader from "./components/Header";
 import profilesListData from "layouts/profile/data/profilesListData";
 
 // Images
-import homeDecor1 from "assets/images/home-decor-1.jpg";
-import homeDecor2 from "assets/images/home-decor-2.jpg";
-import homeDecor3 from "assets/images/home-decor-3.jpg";
-import homeDecor4 from "assets/images/home-decor-4.jpeg";
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Statusentitylist from "../serverstatus/components/statusentitylist";
 import Mapinfocard from "./components/mapinfocard";
 
 function rendermapinfocard(posts, whichmap) {
+    try {
+        // console.log(posts.current);
+        if (posts.current === undefined) {
+            return "no data";
+        }
+
+    }catch (e) {
+        return "no data";
+
+    }
     if (whichmap === "current") {
         try {
-            console.log(posts.current);
             return (
                 <div>
                     <Mapinfocard
@@ -100,7 +101,7 @@ function rendermapinfocard(posts, whichmap) {
         }
     } else if (whichmap === "next") {
         try {
-            console.log(posts.current);
+            // console.log(posts.current);
             return (
                 <div>
                     <Mapinfocard
@@ -191,8 +192,6 @@ function Maprotation() {
         loadPost();
     }, []);
 
-    console.log(posts);
-    console.log(posts !== []);
     return (
         <DashboardLayout>
             <DashboardNavbar/>
@@ -211,7 +210,7 @@ function Maprotation() {
                 <MDBox mt={5} mb={3}>
                     <Grid container spacing={1}>
 
-                        {!loading ?
+                        {posts!==[] ?
                                 <Grid item xs={12} md={6} lg={4}>
                                     {/*<Divider orientation="vertical" sx={{ml: -2, mr: 1}}/>*/}
                                     {rendermapinfocard(posts, "current")}
