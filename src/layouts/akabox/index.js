@@ -52,6 +52,7 @@ import DataTable from "../../examples/Tables/DataTable";
 import gamedata from "layouts/akabox/data/gamedata"
 import dmgbarchartdatahandle from "./data/dmgBarChartData";
 import rplinechartdatahandle from "./data/rpLineChartData";
+import gamedatahandle from "layouts/akabox/data/gamedata";
 
 TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
@@ -430,7 +431,7 @@ function akabox() {
                                         {gameposts[0] !== undefined ?
 
                                             <DataTable
-                                                table={gamedata(gameposts)}
+                                                table={gamedatahandle(gameposts)}
                                                 isSorted={true}
                                                 entriesPerPage={false}
                                                 showTotalEntries={false}
