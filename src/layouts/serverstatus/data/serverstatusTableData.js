@@ -30,60 +30,33 @@ import ReactTimeAgo from "react-time-ago";
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 export let tablerowsdata = [];
 
-export default function serverstatusdatahandle() {
+export default function serverstatusdatahandle(serverdata,catagory) {
   tablerowsdata = [];
 
-  let gameentity = {
-    "uid": "000",
-    "name": "000",
-    "legendPlayed": "legend",
-    "gameMode": "BATTLE_ROYALE",
-    "gameLengthSecs": 1221,
-    "gameStartTimestamp": 1650571042,
-    "gameEndTimestamp": 1650572263,
-    "gameData": [{"key": "kills", "value": 0, "name": "BR Kills"}, {
-      "key": "damage",
-      "value": 150,
-      "name": "BR Damage"
-    }, {"key": {"NOT_IMPLEMENTED_YET_2047429420": 0}, "value": 0, "name": null}],
-    "estimatedLevelProgress": 4500,
-    "BRScoreChange": 24,
-    "BRScore": 5276,
-    "ArenasScoreChange": 0,
-    "ArenasScore": 0,
-    "cosmetics": {
-      "pose": "Incoming",
-      "skin": "Daemon Hunter",
-      "frame": "Fight With Honor",
-      "intro": "None",
-      "poseRarity": "Common",
-      "skinRarity": "Epic",
-      "frameRarity": "Epic",
-      "introRarity": "None"
-    },
-    "possiblePlacement": [{"placement": "14+", "assists": 6}, {"placement": 5, "assists": 2}, {
-      "placement": 3,
-      "assists": 1
-    }, {"placement": 2, "assists": 0}],
-    "gamedatakill": 1,
-    "gamedatadmg": 1,
-    "possibleplacementassist": 1,
-    "possibleplacement": "3"
-
-
+  let serverdataentity = {
+    "catagory": {
+      "region": {
+        "Status": "UP",
+        "HTTPCode": 200,
+        "ResponseTime": 10,
+        "QueryTimestamp": 0
+      },
+    }
   };
   // console.log(JSON.stringify(gamedata[13]));
 
 
   try {
-    console.log("try gamedata 0");
-    console.log(gamedata[0]);
+    console.log("try serverdata 0");
+    // console.log(serverdata);
     // tablerowsdata = gamedata;
 
+    serverdataentity.catagory.region
 
-    for (let i = 0; i < gamedata.length; i++) {
-      gameentity = {};
+    for (let i = 0; i < serverdata.length; i++) {
+      serverdataentity = {};
       // console.log(gamedata[i].gameStartTimestamp);
+
 
 
       gameentity.uid = gamedata[i].uid;
