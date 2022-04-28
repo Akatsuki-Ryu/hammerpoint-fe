@@ -53,6 +53,16 @@ import gamedata from "layouts/akabox/data/gamedata"
 import dmgbarchartdatahandle from "./data/dmgBarChartData";
 import rplinechartdatahandle from "./data/rpLineChartData";
 import gamedatahandle from "layouts/akabox/data/gamedata";
+import {
+    avgdmgall, avgdmgmonth, avgdmgweek,
+    avgkillall, avgkillmonth, avgkillweek,
+    maxdmgall,
+    maxdmgmonth,
+    maxdmgweek,
+    maxkillall,
+    maxkillmonth,
+    maxkillweek
+} from "./data/datainsight";
 
 TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
@@ -123,6 +133,23 @@ function getcurrentprofile(currentprofilename) {
 
 }
 
+function timestamptoindex(timestamp) {
+    let unixTime = timestamp;
+    const dateac = new Date(unixTime);
+    // console.log(dateac.toLocaleDateString("en-US"));
+    // console.log(dateac.toLocaleTimeString("en-US"));
+    unixTime = Math.floor(unixTime / 10000) * 10000;
+    console.log(unixTime);
+    const dateindex = new Date(unixTime);
+    // console.log(dateindex.toLocaleDateString("en-US"));
+    // console.log(dateindex.toLocaleTimeString("en-US"));
+    // console.log(dateindex);
+    return dateindex;
+
+}
+
+const oneweek = 1000 * 60 * 60 * 24 * 7;
+
 
 function akabox() {
 
@@ -139,6 +166,8 @@ function akabox() {
     let dateregular = new Date();
     dateregular = Date.now();
 
+
+    // timestamptoindex(dateregular);
 
 
     //table data
@@ -381,30 +410,83 @@ function akabox() {
                         <Grid item xs={12} md={6} lg={4}>
                             <MDBox mb={3}>
                                 {gameposts[0] !== undefined ?
-                                <ReportsLineChart
-                                    color="warning"
-                                    title="ranked game rp changes"
-                                    description={
-                                        <>
-                                            (<strong>+15%</strong>) increase in today
-                                        </>
-                                    }
-                                    date="updated 4 min ago"
-                                    chart={rplinechartdatahandle(gameposts)}
-                                />:"Loading"}
+                                    <ReportsLineChart
+                                        color="warning"
+                                        title="ranked game rp changes"
+                                        description={
+                                            <>
+                                                (<strong>+15%</strong>) increase in today
+                                            </>
+                                        }
+                                        date="updated 4 min ago"
+                                        chart={rplinechartdatahandle(gameposts)}
+                                    /> : "Loading"}
                             </MDBox>
                         </Grid>
 
-                        <Grid item xs={12} md={6} lg={4}>    Coming Soon
-                        {/*    <MDBox mb={3}>*/}
-                        {/*        <ReportsLineChart*/}
-                        {/*            color="dark"*/}
-                        {/*            title="ranked arena rp changes"*/}
-                        {/*            description="ranked arena rp changes"*/}
-                        {/*            date="just updated"*/}
-                        {/*            chart={tasks}*/}
-                        {/*        />*/}
-                        {/*    </MDBox>*/}
+                        <Grid item xs={12} md={6} lg={2}>
+                            <MDTypography variant="h3" color="info" textGradient textTransform="capitalize">
+                                highest
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                kill Alltime: &emsp;{maxkillall}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                kill Lastweek:&emsp;{maxkillweek}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                kill Lastmonth: &emsp;{maxkillmonth}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                --
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                DMG Alltime: {maxdmgall}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                DMG Lastweek: {maxdmgweek}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                DMG Lastmonth: {maxdmgmonth}
+                            </MDTypography>
+
+
+                            {/*    <MDBox mb={3}>*/}
+                            {/*        <ReportsLineChart*/}
+                            {/*            color="dark"*/}
+                            {/*            title="ranked arena rp changes"*/}
+                            {/*            description="ranked arena rp changes"*/}
+                            {/*            date="just updated"*/}
+                            {/*            chart={tasks}*/}
+                            {/*        />*/}
+                            {/*    </MDBox>*/}
+                        </Grid>
+                        <Grid item xs={12} md={6} lg={2}>
+
+                            <MDTypography variant="h3" color="info" textGradient textTransform="capitalize">
+                                average
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                kill Alltime: &emsp;{avgkillall}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                kill Lastweek: &emsp;{avgkillweek}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                kill Lastmonth: &emsp;{avgkillmonth}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                --
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                DMG Alltime: {avgdmgall}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                DMG Lastweek: {avgdmgweek}
+                            </MDTypography>
+                            <MDTypography variant="h5" fontWeight="bold" textTransform="capitalize">
+                                DMG Lastmonth: {avgdmgmonth}
+                            </MDTypography>
                         </Grid>
                     </Grid>
                 </MDBox>

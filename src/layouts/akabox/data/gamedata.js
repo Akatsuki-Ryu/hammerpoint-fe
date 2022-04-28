@@ -28,6 +28,7 @@ import team4 from "assets/images/team-4.jpg";
 import ReactTimeAgo from "react-time-ago";
 
 import SimpleDateTime from 'react-simple-timestamp-to-date';
+import {getdmginsight, getkillsinsight} from "./datainsight";
 export let tablerowsdata = [];
 
 export default function gamedatahandle(gamedata) {
@@ -170,6 +171,8 @@ export default function gamedatahandle(gamedata) {
 
         }
         // console.log(tablerowsdata);
+        getdmginsight(tablerowsdata);
+        getkillsinsight(tablerowsdata);
 
 
         return {
