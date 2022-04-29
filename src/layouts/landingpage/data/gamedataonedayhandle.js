@@ -28,10 +28,10 @@ import team4 from "assets/images/team-4.jpg";
 import ReactTimeAgo from "react-time-ago";
 
 import SimpleDateTime from 'react-simple-timestamp-to-date';
-import {getdmginsight, getkillsinsight} from "./datainsight";
+import {getdmginsight, getkillsinsight} from "../../akabox/data/datainsight";
 export let tablerowsdata = [];
 
-export default function gamedatahandle(gamedata) {
+export default function gamedataonedayhandle(gamedata) {
     tablerowsdata = [];
 
     let gameentity = {
@@ -177,12 +177,11 @@ export default function gamedatahandle(gamedata) {
 
         return {
             columns: [
+                {Header: "Player", accessor: "name", align: "center"},
                 {Header: "time", accessor: "gameStartTimedisp", align: "center"},
                 {Header: "length", accessor: "gameLengthdisp", align: "center"},
                 {Header: "MODE", accessor: "gameMode", align: "center"},
                 {Header: "legendPlayed", accessor: "legendPlayed", align: "center"},
-                {Header: "BRScore", accessor: "BRScore", align: "center"},
-                {Header: "BRScoreChange", accessor: "BRScoreChange", align: "center"},
                 {Header: "kill", accessor: "gamedatakill", align: "center"},
                 {Header: "DMG", accessor: "gamedatadmg", align: "center"},
                 {Header: "assist", accessor: "possibleplacementassist", align: "center"},

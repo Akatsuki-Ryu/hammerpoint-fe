@@ -4,6 +4,8 @@ export let maxdmgall = 0;
 export let avgdmgweek = 0;
 export let avgdmgmonth = 0;
 export let avgdmgall = 0;
+export let totaldmgall = 0;
+
 
 export let maxkillweek = 0;
 export let maxkillmonth = 0;
@@ -11,6 +13,7 @@ export let maxkillall = 0;
 export let avgkillweek = 0;
 export let avgkillmonth = 0;
 export let avgkillall = 0;
+export let totalkillall = 0;
 
 
 const oneweek = 1000 * 60 * 60 * 24 * 7;
@@ -59,6 +62,7 @@ export function getdmginsight(tablerowsdata) {
             samplevol++;
         }
     }
+    totaldmgall = dmgsum;
     avgdmgall = dmgsum / samplevol;
     avgdmgall = Math.round(avgdmgall * 10) / 10;
     console.log(maxdmgall);
@@ -111,6 +115,7 @@ export function getkillsinsight(tablerowsdata) {
             samplevol++;
         }
     }
+    totalkillall = killsum;
     avgkillall = killsum / samplevol;
     avgkillall = Math.round(avgkillall * 10) / 10;
     console.log(maxkillall);

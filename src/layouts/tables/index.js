@@ -28,7 +28,7 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import authorsTableData from "layouts/tables/data/playerlistdata";
+import authorsTableData from "layouts/landingpage/data/playerlistdata";
 import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function Tables() {

@@ -41,8 +41,11 @@ import Card from "@mui/material/Card";
 import MDTypography from "../../components/MDTypography";
 import DataTable from "../../examples/Tables/DataTable";
 import projectsTableData from "../tables/data/projectsTableData";
-import playerlistdata from "../tables/data/playerlistdata";
+import playerlistdata from "./data/playerlistdata";
 import serverstatus, {serverstatuscomp} from "../serverstatus";
+import gamedatahandle from "../akabox/data/gamedata";
+import gamedataonedayhandle from "./data/gamedataonedayhandle";
+import {totaldmgall, totalkillall} from "../akabox/data/datainsight";
 
 function landingpage() {
 
@@ -51,6 +54,7 @@ function landingpage() {
     const {REACT_APP_SERVER_URL} = process.env;
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]);
+    const [gamedata, setgamedata] = useState([]);
 
     useEffect(() => {
         function loadPost() {
@@ -68,19 +72,34 @@ function landingpage() {
                 if (response.data) {
                     // cache.set(to, response.data);
                     // return res.status(200).json(response.data);
-                    console.log(response.data);
+                    // console.log(response.data);
                     // apioutput = JSON.stringify(response.data);
                     // console.log(apioutput);
                     setPosts(response.data);
 
 
 
-                    // Closed the loading page
-                    setLoading(false);
                 }
             }).catch((error) => {
                 console.log(error);
                 // return res.json(error);
+            })
+
+            axios.get(
+                `${REACT_APP_SERVER_URL}/getgamedataoneday`,
+                {}
+            ).then((response) => {
+                if (response.data) {
+                    console.log(response.data);
+                    setgamedata(response.data);
+
+
+                    // Closed the loading page
+                    setLoading(false);
+                    console.log("get gamedata for one day request===================================");
+                }
+            }).catch((error) => {
+                console.log(error);
             })
 
 
@@ -95,7 +114,7 @@ function landingpage() {
     }, []);
 
     const {sales, tasks} = reportsLineChartData;
-    console.log(posts);
+    // console.log(posts);
 
 
     return (
@@ -112,8 +131,8 @@ function landingpage() {
 
             {/*{posts!==[] ? JSON.stringify(posts):""}*/}
 
-            <MDBox pt={6} pb={3} >
-                <Grid container spacing={3} >
+            <MDBox pt={6} pb={3}>
+                <Grid container spacing={3}>
                     <Grid item xs={12} lg={6}>
                         <Card>
                             <MDBox
@@ -142,13 +161,100 @@ function landingpage() {
                         </Card>
 
                     </Grid>
-                    <Grid item xs={12} lg={6} >
+                    <Grid item xs={12} lg={6}>
 
                         {serverstatuscomp()}
                     </Grid>
 
 
                 </Grid>
+            </MDBox>
+            <MDTypography variant="h4" >
+                team total kill : {totalkillall}
+            </MDTypography>
+
+
+            <MDTypography variant="h4" >
+                team total dmg: {totaldmgall}
+            </MDTypography>
+
+
+            <MDBox mt={-2.5}>
+                <MDBox pt={6} pb={3}>
+                    <Grid container spacing={6}>
+                        <Grid item xs={12}>
+                            <Card>
+                                <MDBox
+                                    mx={2}
+                                    mt={-3}
+                                    py={3}
+                                    px={2}
+                                    variant="gradient"
+                                    bgColor="info"
+                                    borderRadius="lg"
+                                    coloredShadow="info"
+                                >
+                                    <MDTypography variant="h6" color="white">
+                                        History Game statics in past 24 hours
+                                    </MDTypography>
+                                </MDBox>
+                                <MDBox pt={3}>
+                                    {gamedata[0] !== undefined ?
+
+                                        <DataTable
+                                            table={gamedataonedayhandle(gamedata)}
+                                            isSorted={true}
+                                            entriesPerPage={false}
+                                            showTotalEntries={true}
+                                            noEndBorder
+                                        /> : ""}
+                                    {/*<DataTable*/}
+                                    {/*    table={table}*/}
+                                    {/*    isSorted={false}*/}
+                                    {/*    entriesPerPage={false}*/}
+                                    {/*    showTotalEntries={false}*/}
+                                    {/*    noEndBorder*/}
+                                    {/*/>*/}
+                                </MDBox>
+                            </Card>
+                        </Grid>
+                        {/*<Grid item xs={12}>*/}
+                        {/*    <Card>*/}
+                        {/*        <MDBox*/}
+                        {/*            mx={2}*/}
+                        {/*            mt={-3}*/}
+                        {/*            py={3}*/}
+                        {/*            px={2}*/}
+                        {/*            variant="gradient"*/}
+                        {/*            bgColor="info"*/}
+                        {/*            borderRadius="lg"*/}
+                        {/*            coloredShadow="info"*/}
+                        {/*        >*/}
+                        {/*            <MDTypography variant="h6" color="white">*/}
+                        {/*                Projects Table*/}
+                        {/*            </MDTypography>*/}
+                        {/*        </MDBox>*/}
+                        {/*        <MDBox pt={3}>*/}
+                        {/*            <DataTable*/}
+                        {/*                table={{ columns: pColumns, rows: pRows }}*/}
+                        {/*                isSorted={false}*/}
+                        {/*                entriesPerPage={false}*/}
+                        {/*                showTotalEntries={false}*/}
+                        {/*                noEndBorder*/}
+                        {/*            />*/}
+                        {/*        </MDBox>*/}
+                        {/*    </Card>*/}
+                        {/*</Grid>*/}
+                    </Grid>
+                </MDBox>
+                {/*<Grid container spacing={3}>*/}
+                {/*    <Grid item xs={12} md={6} lg={8}>*/}
+                {/*        <Projects/>*/}
+                {/*    </Grid>*/}
+                {/*    <Grid item xs={12} md={6} lg={4}>*/}
+                {/*        <OrdersOverview/>*/}
+                {/*    </Grid>*/}
+                {/*</Grid>*/}
             </MDBox>
             sdfs
 
