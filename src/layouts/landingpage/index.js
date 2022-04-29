@@ -37,8 +37,15 @@ import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import {apioutput, apirequest} from "../../services/apirequest";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Card from "@mui/material/Card";
+import MDTypography from "../../components/MDTypography";
+import DataTable from "../../examples/Tables/DataTable";
+import projectsTableData from "../tables/data/projectsTableData";
+import playerlistdata from "../tables/data/playerlistdata";
 
 function landingpage() {
+
+    const { columns: pColumns, rows: pRows } = projectsTableData();
 
     const {REACT_APP_SERVER_URL} = process.env;
     const [loading, setLoading] = useState(false);
@@ -52,7 +59,7 @@ function landingpage() {
             setLoading(true);
 
             axios.get(
-                `${REACT_APP_SERVER_URL}/getserverstatus`,
+                `${REACT_APP_SERVER_URL}/getplayers`,
                 {}
             ).then((response) => {
                 // console.log('Get response data');
@@ -66,6 +73,9 @@ function landingpage() {
                     setPosts(response.data);
 
 
+
+                    // Closed the loading page
+                    setLoading(false);
                 }
             }).catch((error) => {
                 console.log(error);
@@ -76,8 +86,7 @@ function landingpage() {
             // After fetching data stored it in posts state.
             // setPosts(response.data);
 
-            // Closed the loading page
-            setLoading(false);
+
         }
 
         // Call the function
@@ -100,9 +109,42 @@ function landingpage() {
             {/*}sss*/}
             <DashboardNavbar/>
 
-Coming soon
             {/*{posts!==[] ? JSON.stringify(posts):""}*/}
-            sss
+
+            <MDBox pt={6} pb={3}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} lg={6}>
+                        <Card>
+                            <MDBox
+                                mx={2}
+                                mt={-3}
+                                py={3}
+                                px={2}
+                                variant="gradient"
+                                bgColor="info"
+                                borderRadius="lg"
+                                coloredShadow="info"
+                            >
+                                <MDTypography variant="h6" color="white">
+                                    Players on board
+                                </MDTypography>
+                            </MDBox>
+                            <MDBox pt={3}>
+                                <DataTable
+                                    table={playerlistdata(posts)}
+                                    isSorted={false}
+                                    entriesPerPage={false}
+                                    showTotalEntries={false}
+                                    noEndBorder
+                                />
+                            </MDBox>
+                        </Card>
+                    </Grid>
+
+
+                </Grid>
+            </MDBox>
+
             <Footer/>
         </DashboardLayout>
     );
