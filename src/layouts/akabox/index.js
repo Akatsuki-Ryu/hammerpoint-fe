@@ -79,11 +79,13 @@ function onlinestatus(realtimedata) {
         if (realtimedata.canJoin === 0) {
             if (realtimedata.isInGame === 1) {
                 return (
-                    <MDBadge badgeContent="Invite Only In-Game" color="warning" variant="gradient" size="lg"/>
+                    <MDBadge badgeContent={realtimedata.currentStateAsText + " as  " + realtimedata.selectedLegend}
+                             color="warning"
+                             variant="gradient" size="lg"/>
                 );
             } else {
                 return (
-                    <MDBadge badgeContent="Invite Only" color="warning" variant="gradient" size="lg"/>
+                    <MDBadge badgeContent="Invite Only Lobby" color="warning" variant="gradient" size="lg"/>
                 );
             }
         } else {
@@ -95,7 +97,7 @@ function onlinestatus(realtimedata) {
                 );
             } else {
                 return (
-                    <MDBadge badgeContent="in Lobby" color="success" variant="gradient" size="lg"/>
+                    <MDBadge badgeContent="Open Lobby" color="success" variant="gradient" size="lg"/>
                 )
             }
         }
@@ -516,7 +518,7 @@ function akabox() {
                                                 table={gamedatahandle(gameposts)}
                                                 isSorted={true}
                                                 entriesPerPage={false}
-                                                showTotalEntries={false}
+                                                showTotalEntries={true}
                                                 noEndBorder
                                             /> : ""}
                                         {/*<DataTable*/}
