@@ -36,7 +36,8 @@ import serverstatusdatahandle from "./data/serverstatusTableData";
 import Statusentitylist from "./components/statusentitylist";
 import Invoices from "../billing/components/Invoices";
 
-function serverstatus() {
+export function serverstatuscomp() {
+
 
     const {REACT_APP_SERVER_URL} = process.env;
     const [loading, setLoading] = useState(false);
@@ -88,20 +89,34 @@ function serverstatus() {
     const {columns: pColumns, rows: pRows} = projectsTableData();
 
     return (
-        <DashboardLayout>
-            <DashboardNavbar/>
+
             <MDBox mt={8}>
                 <MDBox mb={3}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} lg={4}>
+                        <Grid item xs={12} lg={6}>
                             <Statusentitylist serverdata={posts} contentswitch="Server"/>
                         </Grid>
-                        <Grid item xs={12} lg={4}>
+                        <Grid item xs={12} lg={6}>
                             <Statusentitylist serverdata={posts} contentswitch="Selfcore"/>
                         </Grid>
                     </Grid>
                 </MDBox>
             </MDBox>
+
+
+
+
+
+    );
+
+
+}
+
+function serverstatus() {
+    return (
+        <DashboardLayout>
+            <DashboardNavbar/>
+            {serverstatuscomp()}
 
             {/*{posts !== [] ? JSON.stringify(posts) : ""}*/}
 
