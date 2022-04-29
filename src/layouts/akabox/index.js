@@ -229,7 +229,7 @@ function akabox() {
         }
 
         const timer = setInterval(() => loadPost(), 6000);//high demand settings , if profile online , fetch every 10 sec
-
+        clearInterval(timer);
 
         // setnewprofile(false);
         loadPost();
