@@ -42,6 +42,7 @@ import MDTypography from "../../components/MDTypography";
 import DataTable from "../../examples/Tables/DataTable";
 import projectsTableData from "../tables/data/projectsTableData";
 import playerlistdata from "../tables/data/playerlistdata";
+import serverstatus, {serverstatuscomp} from "../serverstatus";
 
 function landingpage() {
 
@@ -111,8 +112,8 @@ function landingpage() {
 
             {/*{posts!==[] ? JSON.stringify(posts):""}*/}
 
-            <MDBox pt={6} pb={3}>
-                <Grid container spacing={3}>
+            <MDBox pt={6} pb={3} >
+                <Grid container spacing={3} >
                     <Grid item xs={12} lg={6}>
                         <Card>
                             <MDBox
@@ -139,11 +140,17 @@ function landingpage() {
                                 />
                             </MDBox>
                         </Card>
+
+                    </Grid>
+                    <Grid item xs={12} lg={6} >
+
+                        {serverstatuscomp()}
                     </Grid>
 
 
                 </Grid>
             </MDBox>
+            sdfs
 
             <Footer/>
         </DashboardLayout>
