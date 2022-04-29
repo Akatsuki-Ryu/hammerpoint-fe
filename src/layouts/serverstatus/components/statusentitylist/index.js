@@ -77,7 +77,6 @@ function statusentitylist({serverdata, contentswitch}) {
         }
     }else if (contentswitch ==="Selfcore") {
         try {
-            console.log(datapurified);
 
             return (
                 <Card sx={{height: "100%"}}>
