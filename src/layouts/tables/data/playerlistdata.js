@@ -57,11 +57,12 @@ function playerhighrequeststatus(online, highdemandlistflag) {
 }
 
 function lastseenstatus(highrequesttimestamp) {
+
     if (highrequesttimestamp === 0) {
         return (<MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="lg"/>);
     } else {
         return (
-            <SimpleDateTime dateSeparator="-" timeSeparator=":">{highrequesttimestamp}</SimpleDateTime>);
+            <SimpleDateTime dateSeparator="-" timeSeparator=":">{highrequesttimestamp/1000}</SimpleDateTime>);
     }
 }
 
