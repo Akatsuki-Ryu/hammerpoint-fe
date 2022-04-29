@@ -26,6 +26,7 @@ import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import SimpleDateTime from "react-simple-timestamp-to-date";
+import ReactTimeAgo from "react-time-ago";
 
 let playerlisttablerowsdata = [];
 
@@ -62,7 +63,10 @@ function lastseenstatus(highrequesttimestamp) {
         return (<MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="lg"/>);
     } else {
         return (
-            <SimpleDateTime dateSeparator="-" timeSeparator=":">{highrequesttimestamp/1000}</SimpleDateTime>);
+            <span><SimpleDateTime dateSeparator="-" timeSeparator=":">{highrequesttimestamp / 1000}</SimpleDateTime>
+                <br/>        Last Seen: <ReactTimeAgo date={highrequesttimestamp} locale="en-US"
+                                                      timeStyle="round"/></span>);
+
     }
 }
 
@@ -114,7 +118,7 @@ export default function playerlistdata(playerdata) {
         }
 
     } catch (e) {
-        console.log(e);
+        // console.log(e);
     }
 
 
