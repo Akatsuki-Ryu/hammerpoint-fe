@@ -191,6 +191,16 @@ function landingpage() {
                                         />
 
                                     </Grid>
+                                    <Grid item xs={12} md={6} lg={4}>
+                                        <DefaultInfoCard
+                                            icon="games"
+                                            color="warning"
+                                            title="Team matches 24hr"
+                                            description=""
+                                            value={gamedata[0] !== undefined ? gamedata.length:"unknown"}
+                                        />
+
+                                    </Grid>
                                 </Grid>
                             </MDBox>
 
