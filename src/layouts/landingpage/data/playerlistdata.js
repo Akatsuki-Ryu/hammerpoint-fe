@@ -31,25 +31,25 @@ import ReactTimeAgo from "react-time-ago";
 let playerlisttablerowsdata = [];
 
 function playerstatus(online, ingame) {
-    if (online === 1) {
-        if (ingame === 0) {
+    if (online === 1||online ==="1") {
+        if (ingame === 0||ingame ==="0") {
             return (<MDBadge badgeContent="Online" color="success" variant="gradient" size="lg"/>);
-        } else if (ingame === 1) {
+        } else if (ingame === 1||ingame==="1") {
             return (<MDBadge badgeContent="InMatch" color="info" variant="gradient" size="lg"/>);
         }
 
-    } else if (online === 0) {
+    } else if (online === 0||online==="0") {
         return (<MDBadge badgeContent="Offline" color="error" variant="gradient" size="lg"/>);
     }
 }
 
 function playerhighrequeststatus(online, highdemandlistflag) {
-    if (highdemandlistflag === 1) {
+    if (highdemandlistflag === 1||highdemandlistflag==="1") {
         return (<MDBadge badgeContent="High Demand List" color="success" variant="gradient" size="lg"/>);
-    } else if (highdemandlistflag === 0) {
-        if (online === 1) {
+    } else if (highdemandlistflag === 0||highdemandlistflag==="0") {
+        if (online === 1||online==="1") {
             return (<MDBadge badgeContent="No credit for Highdemand" color="error" variant="gradient" size="lg"/>);
-        } else if (online === 0) {
+        } else if (online === 0||online==="0") {
             return (<MDBadge badgeContent="Regular List" color="secondary" variant="gradient" size="lg"/>);
         }
 
@@ -62,6 +62,7 @@ function lastseenstatus(highrequesttimestamp) {
     if (highrequesttimestamp === "0") {
         return (<MDBadge badgeContent="Unknown" color="secondary" variant="gradient" size="lg"/>);
     } else {
+        highrequesttimestamp = parseInt(highrequesttimestamp);
         return (
             <span><SimpleDateTime dateSeparator="-" timeSeparator=":">{highrequesttimestamp / 1000}</SimpleDateTime>
                 <br/>        Last Seen: <ReactTimeAgo date={highrequesttimestamp} locale="en-US"
