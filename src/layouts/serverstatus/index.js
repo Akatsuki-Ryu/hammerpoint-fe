@@ -90,8 +90,7 @@ export function serverstatuscomp() {
 
     return (
 
-            <MDBox mt={8}>
-                <MDBox mb={3}>
+
                     <Grid container spacing={3}>
                         <Grid item xs={12} lg={6}>
                             <Statusentitylist serverdata={posts} contentswitch="Server"/>
@@ -100,8 +99,7 @@ export function serverstatuscomp() {
                             <Statusentitylist serverdata={posts} contentswitch="Selfcore"/>
                         </Grid>
                     </Grid>
-                </MDBox>
-            </MDBox>
+
 
 
 
@@ -116,10 +114,13 @@ function serverstatus() {
     return (
         <DashboardLayout>
             <DashboardNavbar/>
+            <MDBox mt={8}>
+                <MDBox mb={3}>
             {serverstatuscomp()}
 
             {/*{posts !== [] ? JSON.stringify(posts) : ""}*/}
-
+                </MDBox>
+            </MDBox>
             <Footer/>
         </DashboardLayout>
     );

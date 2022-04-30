@@ -46,10 +46,11 @@ import serverstatus, {serverstatuscomp} from "../serverstatus";
 import gamedatahandle from "../akabox/data/gamedata";
 import gamedataonedayhandle from "./data/gamedataonedayhandle";
 import {totaldmgall, totalkillall} from "../akabox/data/datainsight";
+import DefaultInfoCard from "../../examples/Cards/InfoCards/DefaultInfoCard";
 
 function landingpage() {
 
-    const { columns: pColumns, rows: pRows } = projectsTableData();
+    const {columns: pColumns, rows: pRows} = projectsTableData();
 
     const {REACT_APP_SERVER_URL} = process.env;
     const [loading, setLoading] = useState(false);
@@ -76,7 +77,6 @@ function landingpage() {
                     // apioutput = JSON.stringify(response.data);
                     // console.log(apioutput);
                     setPosts(response.data);
-
 
 
                 }
@@ -132,7 +132,10 @@ function landingpage() {
             {/*{posts!==[] ? JSON.stringify(posts):""}*/}
 
             <MDBox pt={6} pb={3}>
-                <Grid container spacing={3}>
+                <Grid container spacing={3} direction="row"
+                      justifyContent="center"
+                      alignItems="flex-start"
+                >
                     <Grid item xs={12} lg={6}>
                         <Card>
                             <MDBox
@@ -161,22 +164,42 @@ function landingpage() {
                         </Card>
 
                     </Grid>
-                    <Grid item xs={12} lg={6}>
+                    {/*<MDBox mt={-2.5}>*/}
+                        <Grid item xs={12} lg={6} mt={-3.5}>
 
-                        {serverstatuscomp()}
-                    </Grid>
+                            {serverstatuscomp()}
+
+                            <MDBox mt={2.5}>
+                                <Grid container spacing={3}>
+                                    <Grid item xs={12} md={6} lg={4}>
+                                        <DefaultInfoCard
+                                            icon="military_tech"
+                                            color="error"
+                                            title="Team total kills 24hr"
+                                            description=""
+                                            value={totalkillall}
+                                        />
+
+                                    </Grid>
+                                    <Grid item xs={12} md={6} lg={4}>
+                                        <DefaultInfoCard
+                                            icon="stars"
+                                            color="warning"
+                                            title="Team total DMG 24hr"
+                                            description=""
+                                            value={totaldmgall}
+                                        />
+
+                                    </Grid>
+                                </Grid>
+                            </MDBox>
+
+                        </Grid>
+                    {/*</MDBox>*/}
 
 
                 </Grid>
             </MDBox>
-            <MDTypography variant="h4" >
-                team total kill : {totalkillall}
-            </MDTypography>
-
-
-            <MDTypography variant="h4" >
-                team total dmg: {totaldmgall}
-            </MDTypography>
 
 
             <MDBox mt={-2.5}>
