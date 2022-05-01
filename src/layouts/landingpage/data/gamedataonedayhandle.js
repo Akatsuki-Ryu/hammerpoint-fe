@@ -111,12 +111,28 @@ export default function gamedataonedayhandle(gamedata) {
 
             try {
                 let rta = gamedata[i].gameData.filter(it => it.key === "kills");
-                if (rta.length === 0) {
-                    rta = gamedata[i].gameData.filter(it => it.key === "specialEvent_kills");
-                    gameentity.gamedatakill = rta[0].value;
-                } else {
-                    gameentity.gamedatakill = rta[0].value;
+                let kills = 0, arenas_kills = 0, specialEvent_kills = 0;
+                if (rta.length !== 0) {
+                    kills = rta[0].value;
+                    console.log("kill");
+                    console.log(kills);
                 }
+
+
+                rta = gamedata[i].gameData.filter(it => it.key === "arenas_kills");
+                if (rta.length !== 0) {
+                    arenas_kills = rta[0].value;
+                    console.log("are kill");
+                    console.log(arenas_kills);
+                }
+                rta = gamedata[i].gameData.filter(it => it.key === "specialEvent_kills");
+                if (rta.length !== 0) {
+                    specialEvent_kills = rta[0].value;
+                    console.log("sp kill");
+                    console.log(specialEvent_kills);
+                }
+                console.log("kill" + kills + "are" + arenas_kills + "sp" + specialEvent_kills);
+                gameentity.gamedatakill = kills + arenas_kills + specialEvent_kills;
 
 
             } catch (err) {
@@ -125,13 +141,23 @@ export default function gamedataonedayhandle(gamedata) {
             }
 
             try {
+                let damage = 0, specialEvent_damage = 0, arenas_damage = 0;
+
                 let rta = gamedata[i].gameData.filter(it => it.key === "damage");
-                if (rta.length === 0) {
-                    rta = gamedata[i].gameData.filter(it => it.key === "specialEvent_damage");
-                    gameentity.gamedatadmg = rta[0].value;
-                } else {
-                    gameentity.gamedatadmg = rta[0].value;
+                if (rta.length !== 0) {
+                    damage = rta[0].value;
                 }
+
+                rta = gamedata[i].gameData.filter(it => it.key === "specialEvent_damage");
+                if (rta.length !== 0) {
+                    specialEvent_damage = rta[0].value;
+                }
+                rta = gamedata[i].gameData.filter(it => it.key === "arenas_damage");
+                if (rta.length !== 0) {
+                    arenas_damage = rta[0].value;
+                }
+                gameentity.gamedatadmg = damage + specialEvent_damage + arenas_damage;
+
             } catch (err) {
                 // console.log(err);
                 gameentity.gamedatadmg = "N/A";
