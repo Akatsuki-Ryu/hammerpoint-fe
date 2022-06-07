@@ -31,25 +31,25 @@ import ReactTimeAgo from "react-time-ago";
 let playerlisttablerowsdata = [];
 
 function playerstatus(online, ingame) {
-    if (online === 1||online ==="1") {
-        if (ingame === 0||ingame ==="0") {
+    if (online === 1 || online === "1") {
+        if (ingame === 0 || ingame === "0") {
             return (<MDBadge badgeContent="Online" color="success" variant="gradient" size="lg"/>);
-        } else if (ingame === 1||ingame==="1") {
+        } else if (ingame === 1 || ingame === "1") {
             return (<MDBadge badgeContent="InMatch" color="info" variant="gradient" size="lg"/>);
         }
 
-    } else if (online === 0||online==="0") {
+    } else if (online === 0 || online === "0") {
         return (<MDBadge badgeContent="Offline" color="error" variant="gradient" size="lg"/>);
     }
 }
 
 function playerhighrequeststatus(online, highdemandlistflag) {
-    if (highdemandlistflag === 1||highdemandlistflag==="1") {
+    if (highdemandlistflag === 1 || highdemandlistflag === "1") {
         return (<MDBadge badgeContent="High Demand List" color="success" variant="gradient" size="lg"/>);
-    } else if (highdemandlistflag === 0||highdemandlistflag==="0") {
-        if (online === 1||online==="1") {
+    } else if (highdemandlistflag === 0 || highdemandlistflag === "0") {
+        if (online === 1 || online === "1") {
             return (<MDBadge badgeContent="No credit for Highdemand" color="error" variant="gradient" size="lg"/>);
-        } else if (online === 0||online==="0") {
+        } else if (online === 0 || online === "0") {
             return (<MDBadge badgeContent="Regular List" color="secondary" variant="gradient" size="lg"/>);
         }
 
@@ -99,13 +99,16 @@ export default function playerlistdata(playerdata) {
     let playerentity = {};
     try {
         for (let i = 0; i < playerdata.length; i++) {
-            playerentity = {};
-            playerentity.player = Playerobj(playerdata[i].profilephoto, playerdata[i].profilename, playerdata[i].playername);
-            playerentity.status = playerstatus(playerdata[i].online, playerdata[i].ingame);
-            playerentity.highrequestlist = playerhighrequeststatus(playerdata[i].online, playerdata[i].highrequestlist);
-            playerentity.lastseen = lastseenstatus(playerdata[i].highrequesttimestamp)
+            if (playerdata[i].archived !== "1" && playerdata[i].archived !== 1) {
 
-            playerlisttablerowsdata.push(playerentity);
+                playerentity = {};
+                playerentity.player = Playerobj(playerdata[i].profilephoto, playerdata[i].profilename, playerdata[i].playername);
+                playerentity.status = playerstatus(playerdata[i].online, playerdata[i].ingame);
+                playerentity.highrequestlist = playerhighrequeststatus(playerdata[i].online, playerdata[i].highrequestlist);
+                playerentity.lastseen = lastseenstatus(playerdata[i].highrequesttimestamp)
+
+                playerlisttablerowsdata.push(playerentity);
+            }
         }
         return {
             columns: [
