@@ -186,7 +186,7 @@ function akabox() {
             setLoading(true);
 
             axios.get(
-                `${REACT_APP_SERVER_URL}/getbridgedata/${currentprofileobj.playername}`,
+                `${REACT_APP_SERVER_URL}/getbridgedataprofile/${currentprofileobj.profilename}`,
                 {}
             ).then((response) => {
                 if (response.data) {
