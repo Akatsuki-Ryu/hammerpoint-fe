@@ -204,7 +204,7 @@ function akabox() {
             })
 
             axios.get(
-                `${REACT_APP_SERVER_URL}/getgamedata/${currentprofileobj.playername}`,
+                `${REACT_APP_SERVER_URL}/getgamedataprofile/${currentprofileobj.profilename}`,
                 {}
             ).then((response) => {
                 if (response.data) {
