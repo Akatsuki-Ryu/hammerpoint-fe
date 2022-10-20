@@ -1,13 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import axios from "axios";
-
+import React from 'react';
+import axios from 'axios';
 
 const {REACT_APP_SERVER_URL} = process.env;
 export let apioutput;
 
 export function apirequest() {
-    console.log("in reqeust");
+    console.log('in reqeust');
     let loginRequest;
     // try {
     //     loginRequest = axios.get(
@@ -26,10 +24,7 @@ export function apirequest() {
     //     console.log(loginRequest);
     // }
 
-    axios.get(
-        `${REACT_APP_SERVER_URL}/apitest`,
-        {}
-    ).then((response) => {
+    axios.get(`${REACT_APP_SERVER_URL}/apitest`, {}).then((response) => {
         // console.log('Get response data');
         if (response.data) {
             // cache.set(to, response.data);
@@ -42,8 +37,7 @@ export function apirequest() {
     }).catch((error) => {
         console.log(error);
         // return res.json(error);
-    })
-
+    });
 
 }
 

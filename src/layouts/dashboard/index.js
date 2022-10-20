@@ -34,7 +34,6 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
-import {apioutput, apirequest} from "../../services/apirequest";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
