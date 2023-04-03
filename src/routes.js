@@ -129,6 +129,14 @@ const routes = [
     component: <Akabox />,
   },
   {
+    type: "collapse",
+    name: "QWERTYUIOP",
+    key: "Werty",
+    icon: <Icon fontSize="medium">person</Icon>,
+    route: "/Werty",
+    component: <Akabox />,
+  },
+  {
     type: "divider",
   },
   {
