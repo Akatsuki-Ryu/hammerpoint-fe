@@ -296,8 +296,8 @@ function akabox() {
                                 count={posts.global ? posts.global.rank.rankScore : "loading"}
                                 percentage={{
                                     color: "success",
-                                    amount: "",
-                                    label: posts.global ? (posts.global.rank.rankedSeason) : "loading",
+                                    amount: posts.global ? ("global top%: " + posts.global.rank.ALStopPercent) : "loading",
+                                    // label: posts.global ? (posts.global.rank.rankedSeason) : "loading",
                                 }}
                             />
                         </MDBox>
